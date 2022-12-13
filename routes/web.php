@@ -27,6 +27,8 @@ Route::get('/admin', [MainController::class, 'admin'])->middleware('auth')->midd
 Route::put('/admin/lock/{id}', [EventController::class, 'lock_user'])->middleware('auth')->middleware('admin');
 Route::put('/admin/unlock/{id}', [EventController::class, 'unlock_user'])->middleware('auth')->middleware('admin');
 Route::delete('/admin/delete/{id}', [EventController::class, 'destroy_user'])->middleware('auth')->middleware('admin');
+Route::get('/admin/adicionar/aluno', [MainController::class, 'addaluno'])->middleware('auth')->middleware('admin')->name('addaluno');
+
 
 
 Route::get('/', [MainController::class, 'index']);

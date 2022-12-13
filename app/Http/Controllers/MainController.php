@@ -121,4 +121,10 @@ class MainController extends Controller
 
         return view('professor.gerenalunos', ['user' => $user, 'professor' => $professor, 'alunos' => $alunos]);
     }
+
+    public function addaluno() {
+        $user = Auth()->user();
+
+        return view('admin.adicionar_aluno', ['user' => $user]);
+    }
 }

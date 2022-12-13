@@ -127,7 +127,7 @@
             <div class="collapse" id="charts_aluno">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('addaluno')}}">Adicionar</a></li>
 
 
 
