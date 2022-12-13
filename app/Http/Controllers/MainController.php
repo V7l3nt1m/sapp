@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orientadore;
 use App\Models\Sala;
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
@@ -41,7 +42,9 @@ class MainController extends Controller
     }
 
 
-
+    public function acessdenied(){
+        return view('acessdenied');
+    }
 
     public function professor_dashboard(){
         $user = Auth()->user();
@@ -83,5 +86,39 @@ class MainController extends Controller
 
     public function sala_login(){
         return view('sala_login');
+    }
+
+
+    public function admin(Request $request){
+        $search = $request->search;
+
+        if($search){
+            $usuarios = User::where([
+                ['name', 'like', '%'.$search.'%']
+            ]
+        )->orWhere('permissao', 'like', '%'.$search.'%');
+        }else{
+            $usuarios = DB::table('users')->where('permissao', '!=', 'admin')->get();
+        }
+        $user = auth()->user();
+        return view('admin.dashboard', ['user' => $user, 'usuarios' => $usuarios]);
+    }
+
+
+    public function orientador(){
+        $user = Auth()->user();
+        $orientador = Orientadore::where('user_id', $user->id)->first();
+
+        return view('orientador.dashboard', ['user' => $user, 'orientador' => $orientador]);
+    }
+
+    public function gerenalunos(){
+        $user = Auth()->user();
+        $professor = Professore::where('user_id', $user->id)->first();
+
+        $alunos = DB::table('alunos')->join('salas', 'salas.id', 'alunos.sala_id')->join('professores', 'professores.id', 'salas.professore_id')->get();
+        
+
+        return view('professor.gerenalunos', ['user' => $user, 'professor' => $professor, 'alunos' => $alunos]);
     }
 }

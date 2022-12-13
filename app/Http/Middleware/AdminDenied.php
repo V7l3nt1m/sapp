@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AlunoDenied
+class AdminDenied
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AlunoDenied
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user() && auth()->user()->permissao != "aluno" || auth()->user() && auth()->user()->permissao == "aluno" && auth()->user()->estado == 0){
+        if(auth()->user() && auth()->user()->permissao != "admin"){
             return redirect('/acessdenied');
         }else{
             return $next($request);

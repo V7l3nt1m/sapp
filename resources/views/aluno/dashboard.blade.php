@@ -1,11 +1,25 @@
 @extends('layouts.alunolayout')
 
 @section('content')
+
 <div class="" style="margin-top: -30px;">
     <h3>Olá, ITELITA</h3><br>
     <p class="h5">Quais avanços daremos no Projecto hoje?</p><br>
   </div>
-  <div class="row">
+  @if(session('msg'))
+    <h1 style="font-size: 18px;
+      background-color: #d4edda;
+      width: 100%;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+      color: #155724;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('msg')}}
+      </h1>
+    @endif
+ <!-- <div class="row">
     <div class="col-md-7 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
@@ -111,5 +125,6 @@
                     </div>
     </div>
   </div>
+-->
 
 @endsection

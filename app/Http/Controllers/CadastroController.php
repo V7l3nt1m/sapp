@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sala;
-use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 use App\Models\Aluno;
 use App\Models\User;
@@ -28,6 +27,22 @@ class CadastroController extends Controller
         $query1 = DB::table('users')->orderBy('id', 'desc')->limit(1)->get();
 
         $query2 = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
+
+        $request->validate(
+            [
+                'primeiro nome' => 'min:2|string',
+                'ultimo nome' => 'min:2|string',
+                'nome completo' => 'min:2|string',
+                'email' => 'email|unique:professores|unique:users',
+                'data de nascimento' => 'date|before:01/01/2006',
+                'image' => 'required|mimes:jpg,bmp,png',
+                'telefone' => 'integer|between: 900000000, 999999999',
+                'numero de processo' => 'unique:alunos|unique:users',
+            ]
+
+
+        );
+
 
         $user = new User;
         $user->name = $request->processo;
@@ -93,6 +108,20 @@ class CadastroController extends Controller
 
         $query4 = DB::table('orientadores')->orderBy('id', 'desc')->limit(1)->first();
 
+
+        $request->validate(
+            [
+                'primeiro nome' => 'min:2|string:255',
+                'ultimo nome' => 'min:2|string:255',
+                'nome completo' => 'min:2|string: 255',
+                'email' => 'email|unique:professores|unique:users',
+                'image' => 'required|mimes:jpg,bmp,png,svg',
+                'telefone' => 'integer|between: 900000000, 999999999',
+                'cadeira' => 'min:2|string: 255',
+            ]
+
+        );
+
         $user = new User;
 
         $user->name = $request->primeiro_nome ." ". $request->ultimo_nome;
@@ -104,10 +133,10 @@ class CadastroController extends Controller
         $orientador->primeiro_nome = $request->primeiro_nome;
         $orientador->ultimo_nome = $request->ultimo_nome;
         $orientador->nome_completo = $request->nome_completo;
-        $orientador->data_nasc = $request->data_nasc;
         $orientador->email = $request->email;
         $orientador->telefone = $request->telefone;
         $orientador->cadeira = $request->cadeira;
+        $orientador->palavra_passe = "orientador2022";
 
         $requestImage = $request->image;
 
@@ -122,6 +151,7 @@ class CadastroController extends Controller
         if (count($query1) == 1) {
             $user->id = $query2->id + 1;
             $orientador->user_id = $user->id;
+
             $user->save();
             $orientador->save();
 
@@ -132,9 +162,9 @@ class CadastroController extends Controller
             }
 
 
-            return redirect('/aluno/orientador/adicionar')->with('msg', 'Cadastro feito com Sucesso!');
+            return redirect('/aluno')->with('msg', 'Cadastro feito com Sucesso!');
         }
-        return redirect('/aluno/orientador/adicionar')->with('msg', 'Cadastro feito com Sucesso!');
+        return redirect('/aluno')->with('msg', 'Cadastro feito com Sucesso!');
     }
 
 
@@ -142,6 +172,19 @@ class CadastroController extends Controller
         $query1 = DB::table('users')->orderBy('id', 'desc')->limit(1)->get();
 
         $query2 = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
+
+        $request->validate(
+            [
+                'primeiro nome' => 'min:2|string',
+                'ultimo nome' => 'min:2|string',
+                'nome completo' => 'min:2|string',
+                'email' => 'email|unique:professores|unique:users',
+                'data de nascimento' => 'date|before:01/01/2005',
+                'image' => 'required|mimes:jpg,bmp,png,svg',
+                'telefone' => 'integer|between: 900000000, 999999999',
+            ]
+
+        );
 
 
         $user = new User;
@@ -255,13 +298,37 @@ class CadastroController extends Controller
 
     public function update_definicoes_aluno(Request $request)
     {
+
+        $user = auth()->user();
+        $email = DB::table('alunos')->select('email')->where('user_id', auth()->user()->id)->first();
+
+
+
+        if(strcasecmp($request->email, $email->email) == 0 || strcasecmp($request->email, $user->email) == 0){
+            $request->validate(
+                [
+                    'palavra-passe' => 'min:9|string',
+                ]
+            );
+        }else{
+            $request->validate(
+                [
+                                    'email' => 'unique:users|unique:alunos',
+                                    'palavra-passe' => 'min:9|string',
+
+                ]
+
+            );
+        }
+
+
+
         if ($request->palavra_passe1 == $request->palavra_passe2) {
             DB::table('alunos')->where('id', $request->aluno_id)->update(['palavra_passe' => $request->palavra_passe1]);
             DB::table('users')->where('id', Auth()->user()->id)->update(['password' => Hash::make($request->palavra_passe1)]);
 
-
             DB::table('users')->where('id', Auth()->user()->id)->update(['email' => $request->email]);
-            DB::table('alunos')->where('id', Auth()->user()->id)->update(['email' => $request->email]);
+            DB::table('alunos')->where('id', $request->aluno_id)->update(['email' => $request->email]);
 
             return back()->with('msg', 'Informações Alteradas com Sucesso!');
         } else {
@@ -277,7 +344,14 @@ class CadastroController extends Controller
         if(count($query) == 0){
             return back()->with('erro', 'A Sala não foi encontrada!');
         }else{
+            DB::table('alunos')->where('user_id', auth()->user()->id)->update(['sala_id' => $sala->id]);
             return redirect('/aluno');
         }
+    }
+
+    public function delete_aluno_sala($id_aluno){
+        Aluno::where('id', $id_aluno)->update(['sala_id' => NULL]);
+
+        return back()->with('msg', 'Aluno Eliminado com sucesso!,');
     }
 }

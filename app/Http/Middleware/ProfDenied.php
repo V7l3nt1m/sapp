@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ProfessorDenied
+class ProfDenied
 {
     /**
      * Handle an incoming request.
@@ -16,6 +16,10 @@ class ProfessorDenied
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(auth()->user() && auth()->user()->permissao != "professor" || auth()->user() && auth()->user()->permissao == "professor" && auth()->user()->estado == 0){
+            return redirect('/acessdenied');
+        }else{
+            return $next($request);
+        }
     }
 }

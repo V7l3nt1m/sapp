@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dashboard - SAPP</title>
+  <title>Orientador Dashboard - SAPP</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/template/vendors/feather/feather.css">
   <link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="/template/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="/template/img/itel_logo_sapp.png" />
+  <link rel="shortcut icon" href="/template/img/itel_logo_sapp.png"/>
 </head>
 <body>
   <div class="container-scroller">
@@ -27,13 +27,13 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="/"><img src="/template/img/itel_logo_sapp.png" class="mr-2" alt="logo"/><span class="h3">SAPP</span></a>
-        <a class="navbar-brand brand-logo-mini" href="/"><img src="/template/img/itel_logo_sapp.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="img/itel_logo_sapp.png" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="/template/#" data-toggle="dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
               <i class="icon-bell mx-0"></i>
               <span class="count"></span>
             </a>
@@ -50,23 +50,22 @@
             </div>
           </li>
           <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="/template/#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/img/professores/{{$professor->imagem_professor}}" alt="profile"/>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="/img/orientadores/{{$orientador->imagem_orientador}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-user text-primary"></i>
                 Perfil
               </a>
-              <a class="dropdown-item" href="/professor/definicoes">
+              <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Definições
               </a>
-                <form action="/logout" method="POST">
-                    @csrf
-                    <a href="/logout" class="dropdown-item"  onclick="event.preventDefault();
-                    this.closest('form').submit();"><i class="ti-power-off text-primary"></i>Terminar Sessão</a>
-                </form>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Terminar Sessão
+              </a>
             </div>
           </li>
         </ul>
@@ -78,73 +77,61 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
-
+      <div class="theme-setting-wrapper">
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
 
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item bg-primary dash">
-            <a class="nav-link" href="/professor">
+            <a class="nav-link" href="">
               <i class="icon-grid menu-icon text-white"></i>
-              <span class="menu-title">Professor - PT</span>
+              <span class="menu-title">Orientador</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Sala</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="icon-contract menu-icon"></i>
+              <span class="menu-title">Alunos</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/professor/sala/criar">Criar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/professor/sala/gerenciar">Gerenciar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Mensagem</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Alunos</span>
+              <span class="menu-title">Projecto</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="/professor/alunos/gerenciar">Gerenciar</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Vizualizar</a></li>
               </ul>
             </div>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Projectos</span>
-              <i class="menu-arrow"></i>
+            <a href="" class="nav-link">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Mensagens</span>
             </a>
-            <div class="collapse" id="icons">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Gerênciar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Pendentes</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Recebidos</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Aprovados</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Em analise</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Reprovados</a></li>
-              </ul>
-            </div>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Orientador</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Anotações</span>
             </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Gerenciar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Mensagem</a></li>
-              </ul>
-            </div>
           </li>
 
 
@@ -159,16 +146,13 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h6 class="font-weight-normal mb-0"><span class="text-primary"></span></h6>
                 </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
 
-                 </div>
-                </div>
               </div>
             </div>
           </div>
-          @yield('content')
-
+          <div class="" style="margin-top: -30px;">
+            <h3>Painel do Orientador de Projectos</h3><br>
+          </div>
          </div>
          </div>
          </div>
@@ -191,25 +175,25 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="/template/vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="/template/vendors/chart.js/Chart.min.js"></script>
-  <script src="/template/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="/template/js/dataTables.select.min.js"></script>
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="/template/js/off-canvas.js"></script>
-  <script src="/template/js/hoverable-collapse.js"></script>
-  <script src="/template/js/template.js"></script>
-  <script src="/template/js/settings.js"></script>
-  <script src="/template/js/todolist.js"></script>
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="/template/js/dashboard.js"></script>
-  <script src="/template/js/Chart.roundedBarCharts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 

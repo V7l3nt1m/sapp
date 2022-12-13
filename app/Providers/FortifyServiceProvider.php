@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Admin;
 use Hash;
 
 
@@ -46,6 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($email.$request->ip());
         });
 
+
         Fortify::authenticateUsing(function (LoginRequest $request) {
             $user = User::where('email', $request->processo_email)
             ->orWhere('name', $request->processo_email)->first();
@@ -54,6 +56,7 @@ class FortifyServiceProvider extends ServiceProvider
                 $user &&
                 Hash::check($request->password, $user->password)
             ) {
+                
                 return $user;
             }
         });

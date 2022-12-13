@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('primeiro_nome');
             $table->string('ultimo_nome');
             $table->string('nome_completo');
-            $table->dateTime('data_nasc');
             $table->string('email');
             $table->integer('telefone');
             $table->string('imagem_orientador');

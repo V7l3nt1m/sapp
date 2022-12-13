@@ -15,6 +15,15 @@
         {{session('msg')}}
       </h1>
     @endif
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -32,50 +41,42 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" placeholder="Primeiro Nome">
+                            <input type="text" class="form-control form-control-lg" class="@error('primeiro nome') is-invalid @enderror" required name="primeiro_nome" id="input-field" placeholder="Primeiro Nome"  onkeyup="validate();">
                           </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome">
+                            <input type="text" class="form-control form-control-lg" class="@error('ultimo nome') is-invalid @enderror" required name="ultimo_nome" id="input-field2" placeholder="Ultimo Nome" onkeyup="validate();">
                           </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo">
+                    <input type="text" class="form-control form-control-lg" class="@error('nome completo') is-invalid @enderror" required name="nome_completo" id="input-field3" placeholder="Nome Completo" onkeyup="validate();">
                 </div>
 
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="date" name="data_nasc" class="form-control form-control-lg" required id="exampleInputEmail1">
-                        </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="number" name="telefone" class="form-control form-control-lg" class="@error('telefone') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Telefone">
                     </div>
+                </div>
                     <div class="col-md-6">
-                        <input type="file" id="image" name="image" class="form-control btn form-control required-lg" accept="image/*"
+                        <input type="file" id="image" name="image" class="form-control btn form-control required-lg" class="@error('image') is-invalid @enderror" accept="image/*"
                     onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
                     </div>
                 </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone">
-                                </div>
-                            </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="cadeira" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Cadeira">
-                                </div>
-                            </div>
 
-                        </div>
+                                <div class="form-group">
+                                    <input type="text" name="cadeira" id="input-field4" class="form-control form-control-lg" class="@error('cadeira') is-invalid @enderror" placeholder="Cadeira" onkeyup="validate();">
+                                </div>
+
 
 
                 <div class="row">
@@ -105,6 +106,22 @@
   <!-- container-scroller -->
   <!-- plugins:js -->
 
+  <script>
+    function validate() {
+    var element = document.getElementById('input-field');
+    element.value = element.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+
+    var element2 = document.getElementById('input-field2');
+    element2.value = element2.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+
+    var element3 = document.getElementById('input-field3');
+    element3.value = element3.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+    var element4 = document.getElementById('input-field4');
+    element4.value = element4.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+    };
+
+
+    </script>
 
 <script type="text/javascript">
     function updatePreview(input, target) {

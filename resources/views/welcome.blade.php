@@ -66,18 +66,25 @@
 
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ml-auto">
+
                                     <li class="nav-item">
                                         <a href="#osapp">SAPP</a>
                                     </li>
                                     <li class="nav-item"><a href="#funcionalidades">Funcionalidades</a></li>
                                     <li class="nav-item"><a href="#devteam">DevTeam</a></li>
-                                    <li class="nav-item"><a href="contact.html">Contactos</a></li>
+
+                                  <!--  <li class="nav-item"><a href="contact.html">Contactos</a></li> -->
                                 </ul>
+
                             </div>
                             <!-- navbar collapse -->
                             @if(Auth::check())
                             <div class="button">
-                                <a href="/login" class="btn">Dashboard</a>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <a href="/logout" class="btn"  onclick="event.preventDefault();
+                                    this.closest('form').submit();"></i>Sair</a>
+                                </form>
                             </div>
                             @else
                             <div class="button">
@@ -108,13 +115,15 @@
                     <div class="col-lg-6 col-12">
                         <div class="home-slider">
                             <div class="hero-text">
-                                <h1 class="wow fadeInUp" data-wow-delay=".4s">Seja bem-vindo a <br> plataforma SAPP</h1>
+                                <h1 class="wow fadeInUp" data-wow-delay=".4s">Seja Bem-Vindo ao <br> Sistema de Auxilio de Projectos da PAP</h1>
                                 <p class="wow fadeInUp" data-wow-delay=".6s">Uma plataforma consebida especialmente para estudantes do último ano de cursos técnicos.
                                     Acreditamos que facilitará para os alunos o processo de criação e para os professores a correção dos relatórios.
                                     <br></p>
+                                    @if(Auth::check())
                                 <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                    <a href="/escolha" class="btn btn_comecar">Começar</a>
+                                    <a href="/dashboard" class="btn btn_comecar">Dashboard</a>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -306,13 +315,8 @@
             </div>
     </section>
 
+ <!--
 
-    <!-- Start Newsletter Area -->
-    <section class="newsletter-area section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-8 col-12">
-                    <!-- Start Newsletter Form -->
                     <div class="subscribe-text wow fadeInLeft" data-wow-delay=".2s">
                         <h6>Inscreva-se para receber as atualizações</h6>
                         <p class="">Inscreva-separa receber as últimas novidades em primeira mão.</p>
@@ -324,7 +328,6 @@
                             </div>
                         </form>
                     </div>
-                    <!-- End Newsletter Form -->
                 </div>
                 <div class="col-lg-4 col-12">
                     <div class="mini-call-action wow fadeInRight" data-wow-delay=".4s">
@@ -338,8 +341,7 @@
             </div>
         </div>
     </section>
-    <!-- /End Newsletter Area -->
-
+-->
 
     <!-- Start Footer Area -->
     <footer class="footer">

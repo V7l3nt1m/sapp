@@ -34,38 +34,60 @@
               <h6 class="font-weight-light" style="
               margin-top: 20px !important;
           ">Preencha os dados corretamente.</h6>
+          @if (count($errors) > 0)
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+      @if(session('erro'))
+    <h1 style="font-size: 18px;
+      background-color: red;
+      width: 100%;
+      border: 1px solid red;
+      text-align: center;
+      color: white;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('msg')}}
+      </h1>
+    @endif
               <form class="pt-3" method="POST" action="/cadastro/professor" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" placeholder="Primeiro Nome">
+                            <input type="text" class="form-control form-control-lg" class="@error('primeiro nome') is-invalid @enderror" required name="primeiro_nome" id="exampleInputUsername1" placeholder="Primeiro Nome">
                           </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome">
+                            <input type="text" class="form-control form-control-lg" class="@error('ultimo nome') is-invalid @enderror"  required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome">
                           </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo">
+                    <input type="text" class="form-control  form-control-lg" class="@error('nome completo') is-invalid @enderror" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo">
                 </div>
 
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="date" name="data_nasc" class="form-control form-control-lg" required id="exampleInputEmail1">
+                            <input type="date" name="data_nasc" class="form-control  form-control-lg" class="@error('data de nascimento') is-invalid @enderror" required id="exampleInputEmail1">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <input type="file" id="image" name="image" class="form-control btn form-control required-lg" accept="image/*"
+                        <input type="file" id="image" name="image" class="form-control btn form-control required-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
                     onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
                     </div>
                 </div>

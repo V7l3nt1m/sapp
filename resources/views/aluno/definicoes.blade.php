@@ -37,7 +37,6 @@
       </h1>
 @endif
 
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class=" mx-auto">
@@ -50,23 +49,23 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg"  value="{{$aluno->email}}"  required id="exampleInputEmail1" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror"  value="{{$aluno->email}}"  required id="exampleInputEmail1" placeholder="Email">
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="password" value="{{$aluno->palavra_passe}}" name="palavra_passe1" class="form-control form-control-lg" required id="exampleInputEmail1">
+                            <input type="password" value="{{$aluno->palavra_passe}}" name="palavra_passe1" class="form-control form-control-lg" class="@error('palavra-passe') is-invalid @enderror" required id="exampleInputEmail1">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="password" value="{{$aluno->palavra_passe}}" name="palavra_passe2" class="form-control form-control-lg" required id="exampleInputEmail1">
+                            <input type="password" value="{{$aluno->palavra_passe}}" name="palavra_passe2" class="form-control form-control-lg" class="@error('palavra-passe') is-invalid @enderror" required id="exampleInputEmail1">
                         </div>
                     </div>
                 </div>
 
-                
+
 
                 <div class="mt-3">
                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Actualizar</button>
@@ -80,7 +79,7 @@
       <!-- content-wrapper ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
+
   <!-- container-scroller -->
   <!-- plugins:js -->
 

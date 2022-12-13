@@ -89,7 +89,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/template/pages/ui-features/buttons.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Sala</span>
             </a>
@@ -102,8 +102,8 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="/template/pages/forms/basic_elements.html">Começar</a></li>
-                <li class="nav-item"><a class="nav-link" href="/template/pages/forms/basic_elements.html">Verificar</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Começar</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Verificar</a></li>
               </ul>
             </div>
           </li>
@@ -121,7 +121,7 @@
                 @endif
 
 
-                <li class="nav-item"> <a class="nav-link" href="/template/pages/charts/chartjs.html">Mensagem</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Mensagem</a></li>
               </ul>
             </div>
           </li>
@@ -145,8 +145,8 @@
                      <i class="mdi mdi-calendar"></i> 06 de Dezembro de 2022
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item bg-warning" href="/template/#">14 de Fevereiro de 2023</a>
-                      <a class="dropdown-item" href="/template/#">Tens 68 dias e 3horas</a>
+                      <a class="dropdown-item bg-warning" href="">14 de Fevereiro de 2023</a>
+                      <a class="dropdown-item" href="">Tens 68 dias e 3horas</a>
                     </div>
                   </div>
                  </div>

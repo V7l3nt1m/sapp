@@ -65,7 +65,7 @@
               <form class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                  <input id="processo" class="form-control form-control-lg" type="text" placeholder="Nº de processo ou Email" name="processo_email" required autofocus>
+                  <input id="processo" class="form-control form-control-lg" type="text" placeholder="Nº de processo ou Nome do usuário" name="processo_email" required autofocus>
                 </div>
                 <div class="form-group">
                   <input id="password" class="form-control form-control-lg" type="password" name="password" placeholder="Palavra-Passe" required autocomplete="current-password">
@@ -79,7 +79,6 @@
 
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Esqueceu-se da password?</a>
                 </div>
                 <div class="text-center mt-3 font-weight-light">
                   Ainda não tem uma conta? <a href="/escolha" class="text-primary">Cadastro</a>
