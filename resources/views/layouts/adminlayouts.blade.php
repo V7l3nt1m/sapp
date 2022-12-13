@@ -118,6 +118,96 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts_aluno" aria-expanded="false" aria-controls="charts_aluno">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Alunos</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts_aluno">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+
+
+
+                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts_professor" aria-expanded="false" aria-controls="charts_professor">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Professores</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts_professor">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+
+
+
+                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts_orientador" aria-expanded="false" aria-controls="charts_orientador">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Orientadores</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts_orientador">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+
+
+
+                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts_coordenador" aria-expanded="false" aria-controls="charts_coordenador">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Coordenadores</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts_coordenador">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+
+
+
+                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts_ad" aria-expanded="false" aria-controls="charts_ad">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Admininstradores</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts_ad">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+
+
+
+                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+              </ul>
+            </div>
+          </li>
+
 
 
 
