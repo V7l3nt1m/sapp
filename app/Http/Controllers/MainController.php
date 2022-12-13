@@ -98,7 +98,7 @@ class MainController extends Controller
             ]
         )->orWhere('permissao', 'like', '%'.$search.'%');
         }else{
-            $usuarios = DB::table('users')->where('permissao', '!=', 'admin')->get();
+            $usuarios = DB::table('users')->get();
         }
         $user = auth()->user();
         return view('admin.dashboard', ['user' => $user, 'usuarios' => $usuarios]);
@@ -117,7 +117,7 @@ class MainController extends Controller
         $professor = Professore::where('user_id', $user->id)->first();
 
         $alunos = DB::table('alunos')->join('salas', 'salas.id', 'alunos.sala_id')->join('professores', 'professores.id', 'salas.professore_id')->get();
-        
+
 
         return view('professor.gerenalunos', ['user' => $user, 'professor' => $professor, 'alunos' => $alunos]);
     }
