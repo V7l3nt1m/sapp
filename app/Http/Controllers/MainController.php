@@ -127,4 +127,28 @@ class MainController extends Controller
 
         return view('admin.adicionar_aluno', ['user' => $user]);
     }
+
+    public function addprofessor() {
+        $user = Auth()->user();
+
+        return view('admin.adicionar_professor', ['user' => $user]);
+    }
+
+    public function addcordenador () {
+        $user = Auth()->user();
+
+        return view('admin.adicionar_cordenador', ['user' => $user]);
+    }
+
+    public function addorientador () {
+        $user = Auth()->user();
+
+        return view('admin.adicionar_orientador', ['user' => $user]);
+    }
+
+    public function addadminoutro () {
+        $user = Auth()->user();
+
+        return view('admin.adicionar_adminoutro', ['user' => $user]);
+    }
 }

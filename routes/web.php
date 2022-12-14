@@ -28,6 +28,11 @@ Route::put('/admin/lock/{id}', [EventController::class, 'lock_user'])->middlewar
 Route::put('/admin/unlock/{id}', [EventController::class, 'unlock_user'])->middleware('auth')->middleware('admin');
 Route::delete('/admin/delete/{id}', [EventController::class, 'destroy_user'])->middleware('auth')->middleware('admin');
 Route::get('/admin/adicionar/aluno', [MainController::class, 'addaluno'])->middleware('auth')->middleware('admin')->name('addaluno');
+Route::get('/admin/adicionar/professor', [MainController::class, 'addprofessor'])->middleware('auth')->middleware('admin')->name('addprofessor');
+Route::get('/admin/adicionar/orientador', [MainController::class, 'addorientador'])->middleware('auth')->middleware('admin')->name('addorientador');
+Route::get('/admin/adicionar/cordenadoor', [MainController::class, 'addcordenador'])->middleware('auth')->middleware('admin')->name('addcordenador');
+Route::get('/admin/adicionar/adminoutro', [MainController::class, 'addadminoutro'])->middleware('auth')->middleware('admin')->name('addadminoutro');
+Route::get('/admin', [MainController::class, 'admin'])->middleware('auth')->middleware('admin')->name('voltaradmin');
 
 
 

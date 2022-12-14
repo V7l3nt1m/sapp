@@ -112,7 +112,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item bg-primary dash">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('voltaradmin')}} ">
               <i class="icon-grid menu-icon text-white"></i>
               <span class="menu-title">Administrador</span>
             </a>
@@ -145,7 +145,7 @@
             <div class="collapse" id="charts_professor">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('addprofessor')}}">Adicionar</a></li>
 
 
 
@@ -163,7 +163,7 @@
             <div class="collapse" id="charts_orientador">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('addorientador')}}">Adicionar</a></li>
 
 
 
@@ -181,7 +181,7 @@
             <div class="collapse" id="charts_coordenador">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('addcordenador')}}">Adicionar</a></li>
 
 
 
@@ -199,7 +199,7 @@
             <div class="collapse" id="charts_ad">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="/aluno/orientador/adicionar">Adicionar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('addadminoutro')}}">Adicionar</a></li>
 
 
 
