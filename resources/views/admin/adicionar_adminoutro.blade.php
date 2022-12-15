@@ -82,6 +82,16 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
+                      <label for="">Previsualização da Imagem</label>
+                      <img id="image-preview"
+                      class="img-fluid img-thumbnail rounded d-block" width="400px">
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+
 
                 <div class="mt-3">
                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
