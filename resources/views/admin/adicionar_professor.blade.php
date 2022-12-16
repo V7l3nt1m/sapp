@@ -47,9 +47,9 @@
                 <h6 class="font-weight-light" style="
                 margin-top: 20px !important;
             ">Preencha os dados corretamente.</h6>
-                <form class="pt-3" method="POST" action="" enctype="multipart/form-data">
+                <form class="pt-3" method="POST" action="{{route('store_professor')}}" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -70,6 +70,9 @@
                     <div class="form-group">
                       <input type="email"  name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email">
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_user" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                      </div>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -83,21 +86,22 @@
                         </div>
                     </div>
 
-                            <div class="form-group">
-                                <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone">
-                            </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" name="palavra_passe1" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Palavra-passe">
-                                    </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone">
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" name="palavra_passe2" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Confirma a Palavra-passe">
-                                    </div>
-                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <select name="curso" id="" class="form-control" required>
+                                  <option value="" disabled selected>Curso</option>
+                                  <option value="informatica">Técnico de Informática</option>
+                        <option value="multimedia">Sistemas de Multimédia</option>
+                        <option value="electronica">Electronica e Telecomunicações</option>
+                                </select>
+                              </div>
                             </div>
+                            
 
                             <div class="row">
                                 <div class="col-md-3"></div>

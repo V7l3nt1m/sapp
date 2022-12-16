@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
@@ -289,7 +289,7 @@
                     <div class="team-member">
                         <figure class="effect-zoe">
                             <div class="team-photo">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Rachel James Johnes" class="img-responsive">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Rachel James Johnes" class="img img-responsive">
                             </div>
                             <div class="team-attrs">
                                 <div class="team-name font-accident-two-bold-italic">Valentim Prado</div>

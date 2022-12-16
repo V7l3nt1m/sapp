@@ -121,7 +121,7 @@
                 @endif
 
 
-                <li class="nav-item"> <a class="nav-link" href="">Mensagem</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('dados_orientador')}}">Ver Dados</a></li>
               </ul>
             </div>
           </li>

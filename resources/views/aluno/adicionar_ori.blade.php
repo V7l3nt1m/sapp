@@ -59,6 +59,10 @@
                   <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
                 </div>
 
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_user" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">

@@ -4,7 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard - SAPP</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/template/vendors/feather/feather.css">
@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="/template/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/template/img/itel_logo_sapp.png" />
+  <style>
+    
+  </style>
 </head>
 <body>
   <div class="container-scroller">
@@ -77,7 +80,7 @@
               </a>
               <form action="/logout" method="POST">
                 @csrf
-                <a href="/logout" class="dropdown-item"  onclick="event.preventDefault();
+                <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
                 this.closest('form').submit();"><i class="ti-power-off text-primary"></i>Terminar Sessão</a>
             </form>
             </div>
@@ -131,7 +134,7 @@
 
 
 
-                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('gerenaluno')}}">Gerenciar</a></li>
               </ul>
             </div>
           </li>
@@ -149,7 +152,7 @@
 
 
 
-                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('gerenprofessor')}}">Gerenciar</a></li>
               </ul>
             </div>
           </li>
@@ -163,12 +166,12 @@
             <div class="collapse" id="charts_orientador">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('gerenorientador')}}">Gerenciar</a></li>
               </ul>
             </div>
           </li>
 
-          <li class="nav-item">
+       <!--   <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts_coordenador" aria-expanded="false" aria-controls="charts_coordenador">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">Coordenadores</span>
@@ -184,7 +187,7 @@
                 <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts_ad" aria-expanded="false" aria-controls="charts_ad">
@@ -199,7 +202,7 @@
 
 
 
-                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('admin_gerenciar_admin')}}">Gerenciar</a></li>
               </ul>
             </div>
           </li>

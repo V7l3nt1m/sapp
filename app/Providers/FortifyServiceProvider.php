@@ -49,14 +49,13 @@ class FortifyServiceProvider extends ServiceProvider
 
 
         Fortify::authenticateUsing(function (LoginRequest $request) {
-            $user = User::where('email', $request->processo_email)
-            ->orWhere('name', $request->processo_email)->first();
+            $user = User::where('nomeusuario', $request->processo_email)->first();
 
             if (
                 $user &&
                 Hash::check($request->password, $user->password)
             ) {
-                
+                User::where('id', $user->id)->update(['hora_login' => date("Y-m-d H:i:s")]);
                 return $user;
             }
         });

@@ -28,13 +28,15 @@ class AdminSeeder extends Seeder
             User::insert([
                 'id' => $user_id,
                 'name' => 'Valentim Loth Simão Prado',
+                'nomeusuario' => 'adminvalentimitel',
                 'email' => 'valentimprado0014d@gmail.com',
-                'password' => Hash::make('Prado936_sapp_admin'),
+                'password' => Hash::make('Prado936'),
                 'permissao' => 'admin',
             ]);
             User::insert([
                 'id' => $user_id,
                 'name' => 'Otoniel Kavungu dos Santos Emanuel',
+                'nomeusuario' => 'adminotonielitel',
                 'email' => 'otonielemanuel21@gmail.com',
                 'password' => Hash::make('adminsappotiniel'),
                 'permissao' => 'admin',
@@ -56,14 +58,16 @@ class AdminSeeder extends Seeder
             User::insert([
                 'id' => 1,
                 'name' => 'Valentim Loth Simão Prado',
+                'nomeusuario' => 'adminvalentimitel',
                 'email' => 'valentimprado0014d@gmail.com',
-                'password' => Hash::make('Prado936_sapp_admin'),
+                'password' => Hash::make('Prado936'),
                 'permissao' => 'admin',
             ]);
             User::insert([
                 'id' => 2,
                 'name' => 'Otoniel Kavungu dos Santos Emanuel',
                 'email' => 'otonielemanuel21@gmail.com',
+                'nomeusuario' => 'adminotonielitel',
                 'password' => Hash::make('adminsappotiniel'),
                 'permissao' => 'admin',
             ]);
@@ -71,7 +75,7 @@ class AdminSeeder extends Seeder
             Admin::insert([
                 'nome' => 'Valentim Loth Simão Prado',
                 'email' => 'valentimprado0014d@gmail.com',
-                'palavra_passe' => Hash::make('Prado936_sapp_admin'),
+                'palavra_passe' => Hash::make('Prado936'),
                 'user_id' => 1,
             ]);
             Admin::insert([

@@ -1,4 +1,5 @@
 @extends('layouts.adminlayouts')
+
 @section('boas_vindas')
 
 @if (count($errors) > 0)
@@ -46,7 +47,7 @@
             <h6 class="font-weight-light" style="
             margin-top: 20px !important;
         ">Preencha os dados corretamente.</h6>
-              <form class="pt-3" method="POST" action="/cadastro/aluno" enctype="multipart/form-data">
+              <form class="pt-3" method="POST" action="{{route('admin_cadastro_admin')}}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="row">
@@ -70,27 +71,10 @@
                   <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="form-group">
-                            <input type="number" name="telefone" class="form-control form-control-lg" class="@error('telefone') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Telefone">
+                          <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_user" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="file" id="image" name="image" class="form-control btn form-control required-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
-                    onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-5">
-                      <label for="">Previsualização da Imagem</label>
-                      <img id="image-preview"
-                      class="img-fluid img-thumbnail rounded d-block" width="400px">
-                    </div>
-                    <div class="col-md-3"></div>
-                  </div>
+                  
 
 
                 <div class="mt-3">

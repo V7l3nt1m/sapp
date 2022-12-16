@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sala;
 use Illuminate\Http\Request;
 use App\Models\Aluno;
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Professore;
 use App\Models\Orientadore;
@@ -15,11 +16,58 @@ use Illuminate\Support\Facades\Http;
 
 class CadastroController extends Controller
 {
-    public function cadastro_aluno(){
-        return view('cadastro.alunos');
-    }
-    public function cadastro_professor(){
-        return view('cadastro.professor');
+
+    public function store_adminis(Request $request)
+    {
+        $query1 = DB::table('users')->orderBy('id', 'desc')->limit(1)->get();
+
+        $query2 = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
+
+        $request->validate(
+            [
+                'primeiro nome' => 'min:2|string',
+                'ultimo nome' => 'min:2|string',
+                'nomeusuario' => 'min:2|string|unique:users',
+                'nome completo' => 'min:2|string',
+                'email' => 'email|unique:professores|unique:users',
+            ]
+
+
+        );
+
+
+        $user = new User;
+        $user->name = $request->nome_completo;
+        $user->nomeusuario = $request->nome_user;
+        $user->email = $request->email;
+        $user->password = Hash::make("Admin2022");
+        $user->permissao = "admin";
+
+
+        $admin = new Admin;
+        $admin->nome = $request->nome_completo;
+        $admin->email = $request->email;
+        $admin->palavra_passe = "Admin2022";
+
+            if(count($query1) == 0){
+                $user->id = 1;
+                $admin->user_id = $user->id;
+
+
+                $user->save();
+                $admin->save();
+
+                return back()->with('msg', "Cadastro feito com sucesso!");
+            }else{
+                $user->id = $query2->id + 1;
+                $admin->user_id = $user->id;
+
+                $user->save();
+                $admin->save();
+
+                return back()->with('msg', "Cadastro feito com sucesso!");
+            }
+            return back()->with('msg', "Cadastro feito com sucesso!");
     }
 
     public function store_alunos(Request $request)
@@ -32,6 +80,7 @@ class CadastroController extends Controller
             [
                 'primeiro nome' => 'min:2|string',
                 'ultimo nome' => 'min:2|string',
+                'nomeusuario' => 'min:2|string|unique:users',
                 'nome completo' => 'min:2|string',
                 'email' => 'email|unique:professores|unique:users',
                 'data de nascimento' => 'date|before:01/01/2006',
@@ -46,6 +95,7 @@ class CadastroController extends Controller
 
         $user = new User;
         $user->name = $request->processo;
+        $user->nomeusuario = $request->nome_user;
         $user->email = $request->email;
         $user->password = Hash::make("aluno2022");
         $user->permissao = "aluno";
@@ -81,7 +131,7 @@ class CadastroController extends Controller
                 $user->save();
                 $aluno->save();
 
-                return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
+                return back()->with('msg', "Cadastro feito com sucesso!");
             }else{
                 $user->id = $query2->id + 1;
                 $aluno->user_id = $user->id;
@@ -89,9 +139,9 @@ class CadastroController extends Controller
                 $user->save();
                 $aluno->save();
 
-                return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
+                return back()->with('msg', "Cadastro feito com sucesso!");
             }
-            return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
+            return back()->with('msg', "Cadastro feito com sucesso!");
 
 
     }
@@ -114,6 +164,7 @@ class CadastroController extends Controller
                 'primeiro nome' => 'min:2|string:255',
                 'ultimo nome' => 'min:2|string:255',
                 'nome completo' => 'min:2|string: 255',
+                'nomeusuario' => 'min:2|string|unique:users',
                 'email' => 'email|unique:professores|unique:users',
                 'image' => 'required|mimes:jpg,bmp,png,svg',
                 'telefone' => 'integer|between: 900000000, 999999999',
@@ -127,6 +178,7 @@ class CadastroController extends Controller
         $user->name = $request->primeiro_nome ." ". $request->ultimo_nome;
         $user->email = $request->email;
         $user->password = Hash::make("orientador2022");
+        $user->nomeusuario = $request->nome_user;
         $user->permissao = "orientador";
 
         $orientador = new Orientadore;
@@ -178,6 +230,7 @@ class CadastroController extends Controller
                 'primeiro nome' => 'min:2|string',
                 'ultimo nome' => 'min:2|string',
                 'nome completo' => 'min:2|string',
+                'nomeusuario' => 'min:2|string|unique:users',
                 'email' => 'email|unique:professores|unique:users',
                 'data de nascimento' => 'date|before:01/01/2005',
                 'image' => 'required|mimes:jpg,bmp,png,svg',
@@ -190,6 +243,7 @@ class CadastroController extends Controller
         $user = new User;
         $user->name = $request->primeiro_nome." ".$request->ultimo_nome;
         $user->email = $request->email;
+        $user->nomeusuario = $request->nome_user;
         $user->password = Hash::make("professor2022");
         $user->permissao = "professor";
 
@@ -202,7 +256,7 @@ class CadastroController extends Controller
         $professor->email = $request->email;
         $professor->telefone = $request->telefone;
         $professor->palavra_passe = "professor2022";
-        $professor->cadeira = "PT";
+        $professor->curso = $request->curso;
 
 
             $requestImage = $request->image;
@@ -223,7 +277,7 @@ class CadastroController extends Controller
                 $user->save();
                 $professor->save();
 
-                return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
+                return back()->with('msg', "Cadastro feito com sucesso!");
             }else{
                 $user->id = $query2->id + 1;
                 $professor->user_id = $user->id;
@@ -231,10 +285,10 @@ class CadastroController extends Controller
                 $user->save();
                 $professor->save();
 
-                return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
+                return back()->with('msg', "Cadastro feito com sucesso!");
             }
-            return redirect('/login')->with('msg', "Cadastro feito com sucesso!");
-    }
+            return back()->with('msg', "Cadastro feito com sucesso!");
+        }
 
 
     public function store_sala(Request $request){
