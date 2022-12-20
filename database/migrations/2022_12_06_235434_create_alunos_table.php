@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('imagem_aluno');
             $table->string('curso');
             $table->string('repetente')->default('nao');
-            $table->string('palavra_passe')->default('aluno2022');
+            $table->string('palavra_passe');
+            $table->string('turma');
             $table->foreignId('user_id')->constrained();
 
 

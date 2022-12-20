@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminDenied::class,
         'orientador' => \App\Http\Middleware\OriDenied::class,
         'prof' => \App\Http\Middleware\ProfDenied::class,
+        'block' => \App\Http\Middleware\block::class,
     ];
 }

@@ -100,4 +100,27 @@ class GetController extends Controller
         }
         return view('aluno.dados_orientador', ['user' => $user, 'orientadores' => $orientadores]);
     }
+
+
+    //definicoes admin
+    public function admin_definicoes(Request $request){
+        $user = Auth()->user();
+        return view('admin.definicoes', ['user' => $user]);
+    }
+
+    public function edit_aluno($id){
+            $user = Auth()->user();
+            $aluno = Aluno::join('users', 'users.id', 'alunos.user_id')->where('alunos.id', $id)->first();
+            
+            return view('admin.edit.edit_aluno', ['user' => $user, 'aluno' => $aluno]);
+        
+    }
+
+    public function edit_admin($id){
+        $user = Auth()->user();
+        $admin = Admin::where('id', $id)->first();
+        $admin_user = User::join('admins', 'admins.user_id','users.id')->where('admins.id', $id)->first();
+
+        return view('admin.edit.edit_admin', ['user' => $user, 'admin' => $admin, 'admin_user' => $admin_user]);
+    }
 }

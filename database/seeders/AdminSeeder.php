@@ -45,7 +45,7 @@ class AdminSeeder extends Seeder
             Admin::insert([
                 'nome' => 'Valentim Loth Simão Prado',
                 'email' => 'valentimprado0014d@gmail.com',
-                'palavra_passe' => Hash::make('Prado936_sapp_admin'),
+                'palavra_passe' => Hash::make('Prado936'),
                 'user_id' => $user_id,
             ]);
             Admin::insert([

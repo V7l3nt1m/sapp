@@ -96,7 +96,9 @@
                         <option value="multimedia">Sistemas de Multimédia</option>
                         <option value="electronica">Electronica e Telecomunicações</option>
                       </select>
+                      
                 </div>
+
 
                 <div class="row">
                     <div class="col-md-3"></div>

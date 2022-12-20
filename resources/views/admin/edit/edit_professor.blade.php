@@ -47,57 +47,57 @@
                 <h6 class="font-weight-light" style="
                 margin-top: 20px !important;
             ">Preencha os dados corretamente.</h6>
-                <form class="pt-3" method="POST" action="{{route('store_professor')}}" enctype="multipart/form-data">
+                <form class="pt-3" method="POST" action="/admin/update_professor/{{$professor->id}}" enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" placeholder="Primeiro Nome">
+                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" class="@error('primeiro nome') is-invalid @enderror" placeholder="Primeiro Nome" value="{{$professor->primeiro_nome}}">
                               </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome" >
+                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome" value="{{$professor->ultimo_nome}}">
                               </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo" >
+                        <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo" value="{{$professor->nome_completo}}">
                     </div>
 
                     <div class="form-group">
-                      <input type="email"  name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email">
+                      <input type="email"  name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email" value="{{$professor->email}}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" class="@error('nome de usuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                        <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();" value="{{$professor_user->nomeusuario}}">
                       </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="date" name="data_de_nascimento" class="form-control form-control-lg" required id="exampleInputEmail1">
+                                <input type="date" name="data_de_nascimento" class="form-control form-control-lg" required id="exampleInputEmail1" value="{{$professor->data_nasc->format('Y-m-d')}}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <input type="file" id="image" name="image" class="form-control btn form-control required-lg" accept="image/*"
-                        onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" required>
+                        onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
                         </div>
                     </div>
 
                             <div class="row">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone">
+                                    <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone" value="{{$professor->telefone}}">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <select name="curso" id="" class="form-control" required>
                                   <option value="" disabled selected>Curso</option>
-                                  <option value="informatica">Técnico de Informática</option>
-                        <option value="multimedia">Sistemas de Multimédia</option>
-                        <option value="electronica">Electronica e Telecomunicações</option>
+                                  <option value="informatica" {{$professor->curso == "informatica" ? 'selected=selected' : ''}}>Técnico de Informática</option>
+                        <option value="multimedia" {{$professor->curso == "multimedia" ? 'selected=selected' : ''}}>Sistemas de Multimédia</option>
+                        <option value="electronica" {{$professor->curso == "electronica" ? 'selected=selected' : ''}}>Electronica e Telecomunicações</option>
                                 </select>
                               </div>
                             </div>
@@ -108,7 +108,7 @@
                                 <div class="col-md-5">
                                   <label for="">Previsualização da Imagem</label>
                                   <img id="image-preview"
-                                  class="img-fluid img-thumbnail rounded d-block" width="400px">
+                                  class="img-fluid img-thumbnail rounded d-block" src="/img/professores/{{$professor->imagem_professor}}" width="400px">
                                 </div>
                                 <div class="col-md-3"></div>
                               </div>

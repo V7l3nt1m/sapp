@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Aluno;
 use App\Models\Admin;
 use App\Models\User;
@@ -25,20 +26,17 @@ class CadastroController extends Controller
 
         $request->validate(
             [
-                'primeiro nome' => 'min:2|string',
-                'ultimo nome' => 'min:2|string',
-                'nomeusuario' => 'min:2|string|unique:users',
-                'nome completo' => 'min:2|string',
+                'nome_de_usuario' => 'min:2|string|unique:users,nomeusuario',
+                'nome_completo' => 'min:2|string',
                 'email' => 'email|unique:professores|unique:users',
+                'image' => 'required|mimes:jpg,bmp,png',
             ]
-
-
         );
 
 
         $user = new User;
         $user->name = $request->nome_completo;
-        $user->nomeusuario = $request->nome_user;
+        $user->nomeusuario = $request->nome_de_usuario;
         $user->email = $request->email;
         $user->password = Hash::make("Admin2022");
         $user->permissao = "admin";
@@ -47,7 +45,18 @@ class CadastroController extends Controller
         $admin = new Admin;
         $admin->nome = $request->nome_completo;
         $admin->email = $request->email;
-        $admin->palavra_passe = "Admin2022";
+        $admin->palavra_passe = Hash::make("Admin2022");
+
+        $requestImage = $request->image;
+
+        $extension = $requestImage->extension();
+
+        $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+        $requestImage->move(public_path('img/admins'), $imageName);
+
+        $admin->imagem_admin = $imageName;
+
 
             if(count($query1) == 0){
                 $user->id = 1;
@@ -78,12 +87,12 @@ class CadastroController extends Controller
 
         $request->validate(
             [
-                'primeiro nome' => 'min:2|string',
-                'ultimo nome' => 'min:2|string',
-                'nomeusuario' => 'min:2|string|unique:users',
-                'nome completo' => 'min:2|string',
+                'primeiro_nome' => 'min:2|string',
+                'ultimo_nome' => 'min:2|string',
+                'nome_de_usuario' => 'min:2|string',
+                'nome_completo' => 'min:2|string',
                 'email' => 'email|unique:professores|unique:users',
-                'data de nascimento' => 'date|before:01/01/2006',
+                'data_de_nascimento' => 'date|before:01/01/2006',
                 'image' => 'required|mimes:jpg,bmp,png',
                 'telefone' => 'integer|between: 900000000, 999999999',
                 'numero de processo' => 'unique:alunos|unique:users',
@@ -91,11 +100,11 @@ class CadastroController extends Controller
 
 
         );
-
+         
 
         $user = new User;
         $user->name = $request->processo;
-        $user->nomeusuario = $request->nome_user;
+        $user->nomeusuario = $request->nome_de_usuario;
         $user->email = $request->email;
         $user->password = Hash::make("aluno2022");
         $user->permissao = "aluno";
@@ -106,12 +115,12 @@ class CadastroController extends Controller
         $aluno->primeiro_nome = $request->primeiro_nome;
         $aluno->ultimo_nome = $request->ultimo_nome;
         $aluno->nome_completo = $request->nome_completo;
-        $aluno->data_nasc = $request->data_nasc;
+        $aluno->data_nasc = $request->data_de_nascimento;
         $aluno->email = $request->email;
         $aluno->telefone = $request->telefone;
         $aluno->curso = $request->curso;
-        $aluno->palavra_passe = "aluno2022";
-
+        $aluno->palavra_passe = Hash::make("aluno2022");
+        $aluno->turma = $request->turma;
 
             $requestImage = $request->image;
 
@@ -161,10 +170,10 @@ class CadastroController extends Controller
 
         $request->validate(
             [
-                'primeiro nome' => 'min:2|string:255',
-                'ultimo nome' => 'min:2|string:255',
-                'nome completo' => 'min:2|string: 255',
-                'nomeusuario' => 'min:2|string|unique:users',
+                'primeiro_nome' => 'min:2|string:255',
+                'ultimo_nome' => 'min:2|string:255',
+                'nome_completo' => 'min:2|string: 255',
+                'nome_de_usuario' => 'min:2|string|unique:users',
                 'email' => 'email|unique:professores|unique:users',
                 'image' => 'required|mimes:jpg,bmp,png,svg',
                 'telefone' => 'integer|between: 900000000, 999999999',
@@ -188,7 +197,7 @@ class CadastroController extends Controller
         $orientador->email = $request->email;
         $orientador->telefone = $request->telefone;
         $orientador->cadeira = $request->cadeira;
-        $orientador->palavra_passe = "orientador2022";
+        $orientador->palavra_passe = Hash::make("orientador2022");
 
         $requestImage = $request->image;
 
@@ -227,12 +236,12 @@ class CadastroController extends Controller
 
         $request->validate(
             [
-                'primeiro nome' => 'min:2|string',
-                'ultimo nome' => 'min:2|string',
-                'nome completo' => 'min:2|string',
-                'nomeusuario' => 'min:2|string|unique:users',
+                'primeiro_nome' => 'min:2|string',
+                'ultimo_nome' => 'min:2|string',
+                'nome_completo' => 'min:2|string',
+                'nome_de_usuario' => 'min:2|string|unique:users,nomeusuario',
                 'email' => 'email|unique:professores|unique:users',
-                'data de nascimento' => 'date|before:01/01/2005',
+                'data_de_nascimento' => 'date|before:01/01/2005',
                 'image' => 'required|mimes:jpg,bmp,png,svg',
                 'telefone' => 'integer|between: 900000000, 999999999',
             ]
@@ -243,7 +252,7 @@ class CadastroController extends Controller
         $user = new User;
         $user->name = $request->primeiro_nome." ".$request->ultimo_nome;
         $user->email = $request->email;
-        $user->nomeusuario = $request->nome_user;
+        $user->nomeusuario = $request->nome_de_usuario;
         $user->password = Hash::make("professor2022");
         $user->permissao = "professor";
 
@@ -252,10 +261,10 @@ class CadastroController extends Controller
         $professor->primeiro_nome = $request->primeiro_nome;
         $professor->ultimo_nome = $request->ultimo_nome;
         $professor->nome_completo = $request->nome_completo;
-        $professor->data_nasc = $request->data_nasc;
+        $professor->data_nasc = $request->data_de_nascimento;
         $professor->email = $request->email;
         $professor->telefone = $request->telefone;
-        $professor->palavra_passe = "professor2022";
+        $professor->palavra_passe = Hash::make("professor2022");
         $professor->curso = $request->curso;
 
 
@@ -407,5 +416,35 @@ class CadastroController extends Controller
         Aluno::where('id', $id_aluno)->update(['sala_id' => NULL]);
 
         return back()->with('msg', 'Aluno Eliminado com sucesso!,');
+    }
+
+    public function enviar_email($id){
+        $usuario = auth()->user();
+
+        $user = User::findOrFail($id);
+
+       $curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://send.api.mailtrap.io/api/send',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{"from":{"email":"mailtrap@sappitel.com","name":"Mailtrap Test"},"to":[{"email":"valentimprado0014d@gmail.com"}],"subject":"You are awesome!","text":"Congrats for sending test email with Mailtrap!","category":"Integration Test"}',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer ********19f4',
+        'Content-Type: application/json'
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+    
     }
 }

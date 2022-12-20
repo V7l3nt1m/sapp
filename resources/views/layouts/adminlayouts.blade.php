@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="/template/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
+  
   <!-- inject:css -->
   <link rel="stylesheet" href="/template/css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -74,10 +75,8 @@
               <img src="/template/images/faces/face28.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Definições
-              </a>
+                <a  class="dropdown-item" href="{{route('admin_definicoes')}}"><i class="ti-settings text-primary"></i> Definições</a>
+              
               <form action="/logout" method="POST">
                 @csrf
                 <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
@@ -284,6 +283,23 @@
   <!-- Custom js for this page-->
   <script src="/template/js/dashboard.js"></script>
   <script src="/template/js/Chart.roundedBarCharts.js"></script>
+  
+  <script>
+    function validate() {
+    var element = document.getElementById('input-field');
+    element.value = element.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+
+    var element2 = document.getElementById('input-field2');
+    element2.value = element2.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+
+    var element3 = document.getElementById('input-field3');
+    element3.value = element3.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+    var element4 = document.getElementById('input-field4');
+    element4.value = element4.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+    };
+
+
+    </script>
   <!-- End custom js for this page-->
 </body>
 

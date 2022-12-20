@@ -118,7 +118,7 @@
                     </form>
                   </a>
                   <a class="dropdown-item">
-                    <form action="/orientadore/delete/orientadores/{{$orientadore->userid}}" method="POST">
+                    <form action="/admin/delete/orientador/{{$orientadore->userid}}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn" style="width: 100%">

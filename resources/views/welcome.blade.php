@@ -57,6 +57,7 @@
                                 <img class="logo1" src="/page1/assets/img/itel_logo_sapp.png" height="50px" alt="Logo" />
                             </a>
                             <div>
+                                
                                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="" aria-controls=""
                                 aria-expanded="" aria-label="">
@@ -68,6 +69,7 @@
                                         color: #fff;
                                     ">Entrar</a>
                             </button>
+
                                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">

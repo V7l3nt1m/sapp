@@ -114,12 +114,10 @@ class MainController extends Controller
 
     public function gerenalunos(){
         $user = Auth()->user();
-        $professor = Professore::where('user_id', $user->id)->first();
 
-        $alunos = DB::table('alunos')->join('salas', 'salas.id', 'alunos.sala_id')->join('professores', 'professores.id', 'salas.professore_id')->get();
+        $alunos = DB::table('alunos')->join('salas', 'salas.id', 'alunos.sala_id')->join('professores', 'professores.id', 'salas.professore_id')->select('alunos.*')->get();
 
-
-        return view('professor.gerenalunos', ['user' => $user, 'professor' => $professor, 'alunos' => $alunos]);
+        return view('professor.gerenalunos', ['user' => $user, 'alunos' => $alunos]);
     }
 
     public function addaluno() {
@@ -151,4 +149,15 @@ class MainController extends Controller
 
         return view('admin.adicionar_adminoutro', ['user' => $user]);
     }
+
+    public function edit_professor($id){
+        $user = Auth()->user();
+        $professor = Professore::where('id', $id)->first();
+        $professor_user = User::join('professores', 'professores.user_id','users.id')->where('professores.id', $id)->first();
+
+        return view('admin.edit.edit_professor', ['user' => $user, 'professor' => $professor, 'professor_user' => $professor_user]);
+    }
+
+   
+
 }

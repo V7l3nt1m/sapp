@@ -22,4 +22,30 @@ class DeleteController extends Controller
         return back()->with('msg', 'Usuário Eliminado com sucesso!');
 
     }
+    public function destroy_aluno($id){
+        Aluno::where('user_id', $id)->delete();
+        Orientadore::join('alunos', 'orientadores.id', 'alunos.orientadore_id')->where('alunos.user_id', $id)->delete();
+        User::where('id', $id)->delete();
+
+        return back()->with('msg', 'Usuário Eliminado com sucesso!');
+
+    }
+    public function destroy_professor($id){
+        Sala::join('professores', 'professores.id', 'salas.professore_id')->where('professores.user_id', $id)->delete();
+        Professore::where('user_id', $id)->delete();
+        User::where('id', $id)->delete();
+
+        return back()->with('msg', 'Usuário Eliminado com sucesso!');
+
+    }
+    public function destroy_orientador($id){
+    $aluno =  Aluno::join('orientadores', 'orientadores.id', 'alunos.orientadore_id')->where('orientadores.user_id', $id)->first();
+    $aluno->update(['orientadore_id' => NULL]);
+
+        Orientadore::where('user_id', $id)->delete();
+        User::where('id', $id)->delete();
+
+        return back()->with('msg', 'Usuário Eliminado com sucesso!');
+
+    }
 }

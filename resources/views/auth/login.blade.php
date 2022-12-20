@@ -80,9 +80,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="text-center mt-3 font-weight-light">
-                  Ainda não tem uma conta? <a href="/escolha" class="text-primary">Cadastro</a>
-                </div>
+             
               </form>
             </div>
           </div>
