@@ -56,13 +56,27 @@
                             <a class="navbar-brand logo" href="index.html">
                                 <img class="logo1" src="/page1/assets/img/itel_logo_sapp.png" height="50px" alt="Logo" />
                             </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            <div>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="" aria-controls=""
+                                aria-expanded="" aria-label="">
+                                        <a href="/login" class="btn" style="
+                                        width: 88px;
+                                        background-color: #004d8b;
+                                        margin-right: 12px;
+                                        margin-bottom: 10px;
+                                        color: #fff;
+                                    ">Entrar</a>
+                            </button>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
                             </button>
+
+                            </div>
 
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ml-auto">
