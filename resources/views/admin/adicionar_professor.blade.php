@@ -53,18 +53,18 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" placeholder="Primeiro Nome">
+                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="input-field" placeholder="Primeiro Nome">
                               </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome" >
+                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="input-field2" placeholder="Ultimo Nome" >
                               </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo" >
+                        <input type="text" class="form-control form-control-lg" required name="nome_completo"  id="input-field3" placeholder="Nome Completo" >
                     </div>
 
                     <div class="form-group">

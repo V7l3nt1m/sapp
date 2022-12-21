@@ -85,25 +85,21 @@ class CadastroController extends Controller
 
         $query2 = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
 
-        $request->validate(
-            [
+        $request->validate([
                 'primeiro_nome' => 'min:2|string',
                 'ultimo_nome' => 'min:2|string',
                 'nome_de_usuario' => 'min:2|string',
-                'nome_completo' => 'min:2|string',
+                'nome_completo' => 'min: 2|string',
                 'email' => 'email|unique:professores|unique:users',
                 'data_de_nascimento' => 'date|before:01/01/2006',
                 'image' => 'required|mimes:jpg,bmp,png',
                 'telefone' => 'integer|between: 900000000, 999999999',
                 'numero de processo' => 'unique:alunos|unique:users',
-            ]
-
-
-        );
+            ]);
          
 
         $user = new User;
-        $user->name = $request->processo;
+        $user->name = $request->nome_completo;
         $user->nomeusuario = $request->nome_de_usuario;
         $user->email = $request->email;
         $user->password = Hash::make("aluno2022");
