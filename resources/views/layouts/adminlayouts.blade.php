@@ -22,7 +22,12 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="/template/img/itel_logo_sapp.png" />
   <style>
-    
+    .scroll-bar{
+      height: 100%;
+      width: 100%;
+     overflow: auto;
+     white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -227,14 +232,14 @@
             </div>
           </div>
 
-          <div class="" style="margin-top: -30px;">
-            <h3>Painel administrativo do SAPP</h3><br>
-
-
-           @yield('boas_vindas')
+         
+          <div class="scroll-bar">
+              <h3>Painel administrativo do SAPP</h3><br>
+             @yield('boas_vindas')
+            
+            
+            @yield('section')
           </div>
-
-@yield('section')
 
 
 
