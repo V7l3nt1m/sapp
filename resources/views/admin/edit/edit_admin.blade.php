@@ -58,9 +58,23 @@
                   <input type="email" name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email" value="{{$admin->email}}">
                 </div>
 
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();" value="{{$admin->nomeusuario}}">
-                        </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select name="genero" required class="form-control form-control-lg">
+                        <option value="" disabled selected>Genero</option>
+                        <option value="masculino" {{$admin->genero == "masculino" ? 'selected=selected' : ''}}>Masculino</option>
+                        <option value="feminino" {{$admin->genero == "feminino" ? 'selected=selected' : ''}}>Feminino</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    
+                            <div class="form-group">
+                              <input type="text" class="form-control form-control-lg" class="@error('nomeusuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();" value="{{$admin->nomeusuario}}">
+                            </div>
+                  </div>
+                </div>
 
                         <div class="form-group">
                             <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"

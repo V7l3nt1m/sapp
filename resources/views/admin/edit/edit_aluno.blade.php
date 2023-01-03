@@ -82,10 +82,13 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
-                                                onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
-                        </div>
+                      <div class="form-group">
+                        <select name="genero" required class="form-control form-control-lg">
+                          <option value="" disabled selected>Genero</option>
+                          <option value="masculino" {{$aluno->genero == "masculino" ? 'selected=selected' : ''}}>Masculino</option>
+                          <option value="feminino" {{$aluno->genero == "feminino" ? 'selected=selected' : ''}}>Feminino</option>
+                        </select>
+                      </div>
                     </div>
                 </div>
                 <div class="row">
@@ -116,6 +119,11 @@
                         </div>
                       </div>
                 </div>
+
+                <div class="form-group">
+                  <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
+                                      onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
+              </div>
 
                 <div class="row">
                     <div class="col-md-3"></div>

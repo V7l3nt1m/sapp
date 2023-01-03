@@ -41,7 +41,7 @@ class UsersImport implements ToCollection
                 'nome_completo' => $row[1],
                 'data_nasc' => date('Y-m-d', strtotime($row[2])),
                 'email' => $row[3],
-                'imagem_aluno' => '102073766ab8aa636e49ae5401b39518.png',
+                'imagem_aluno' => '7e61f3c03110f4d9f6ca3985d7fe5cb8.png',
                 'curso' => $this->curso,
                 'turma' => $this->turma,
                 'palavra_passe' => Hash::make("aluno2022"),

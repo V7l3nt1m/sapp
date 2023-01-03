@@ -124,6 +124,7 @@ class UpdateController extends Controller
             try {
                 $aluno->update([
                     'telefone' => $request->telefone,
+                    'genero' => $request->genero,
                 ]);
             } catch (\Throwable $th) {
                 return back()->with('erro', 'O numero de telefone já existe!');
@@ -163,6 +164,7 @@ class UpdateController extends Controller
         try {
             $aluno->update([
                 'telefone' => $request->telefone,
+                'genero' => $request->genero,
             ]);
         } catch (\Throwable $th) {
             return back()->with('erro', 'O numero de telefone já existe!');
@@ -234,8 +236,9 @@ public function update_professor(Request $request){
                 }
         
                 try {
-                    $aluno->update([
+                    $professor->update([
                         'telefone' => $request->telefone,
+                        'genero' => $request->genero,
                     ]);
                 } catch (\Throwable $th) {
                     return back()->with('erro', 'O numero de telefone já existe!');
@@ -265,6 +268,7 @@ public function update_professor(Request $request){
                 try {
                     $professor->update([
                         'telefone' => $request->telefone,
+                        'genero' => $request->genero,
                     ]);
                 } catch (\Throwable $th) {
                     return back()->with('erro', 'O numero de telefone já existe!');
@@ -321,6 +325,7 @@ public function update_admins(Request $request){
                     $admin->update([
                         'admins.email' => $request->email,
                         'users.email' => $request->email,
+                        'genero' => $request->genero,
                         ]);
                 } catch (\Throwable $th) {
                     return back()->with('erro', 'O email já existe!');
@@ -335,6 +340,7 @@ public function update_admins(Request $request){
                     $admin->update([
                         'admins.email' => $request->email,
                         'users.email' => $request->email,
+                        'genero' => $request->genero,
                         ]);
                 } catch (\Throwable $th) {
                     return back()->with('erro', 'O email já existe!');

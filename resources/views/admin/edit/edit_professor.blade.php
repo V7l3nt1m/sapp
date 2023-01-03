@@ -43,7 +43,7 @@
           <div class="row w-100 mx-0">
             <div class=" mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <h3>Cadastrar Professor</h3>
+                <h3>Editando Professor: {{$professor->nome_completo}}</h3>
                 <h6 class="font-weight-light" style="
                 margin-top: 20px !important;
             ">Preencha os dados corretamente.</h6>
@@ -81,9 +81,15 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
-                        onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
-                        </div>
+                          <div class="form-group">
+                                        <select name="genero" required class="form-control form-control-lg">
+                                          <option value="" disabled selected>Genero</option>
+                                          <option value="masculino" {{$professor->genero == "masculino" ? 'selected=selected' : ''}}>Masculino</option>
+                                          <option value="feminino" {{$professor->genero == "feminino" ? 'selected=selected' : ''}}>Feminino</option>
+                                        </select>
+                                      </div>
+                            
+                    </div>
                     </div>
 
                             <div class="row">
@@ -101,6 +107,12 @@
                                 </select>
                               </div>
                             </div>
+
+                            <div class="form-group">
+                              <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
+                                                      onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
+                            </div>
+                        
                             
 
                             <div class="row">

@@ -50,6 +50,7 @@ class CadastroController extends Controller
         $admin->nome = $request->nome_completo;
         $admin->email = $request->email;
         $admin->palavra_passe = Hash::make("Admin2022");
+        $admin->genero = $request->genero;
 
         $requestImage = $request->image;
 
@@ -121,6 +122,7 @@ class CadastroController extends Controller
         $aluno->curso = $request->curso;
         $aluno->palavra_passe = Hash::make("aluno2022");
         $aluno->turma = $request->turma;
+        $aluno->genero = $request->genero;
 
             $requestImage = $request->image;
 
@@ -204,6 +206,7 @@ class CadastroController extends Controller
         $professor->telefone = $request->telefone;
         $professor->palavra_passe = Hash::make("professor2022");
         $professor->curso = $request->curso;
+        $professor->genero = $request->genero;
 
 
             $requestImage = $request->image;

@@ -42,7 +42,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 40px">
   <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
       <div class="row gx-4">
@@ -306,8 +306,14 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
-                                    onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" required>
+                                      <div class="form-group">
+                                        <select name="genero" required class="form-control form-control-lg">
+                                          <option value="" disabled selected>Genero</option>
+                                          <option value="masculino">Masculino</option>
+                                          <option value="feminino">Feminino</option>
+                                        </select>
+                                      </div>
+                                      
                                     </div>
                                 </div>
             
@@ -327,7 +333,10 @@
                                           </div>
                                         </div>
                                         
-            
+                                        <div class="form-group">
+                                          <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
+                                          onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" required>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-5">

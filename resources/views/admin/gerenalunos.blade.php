@@ -71,7 +71,7 @@
 </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 40px">
   <div class="card shadow-lg mx-4 card-profile-bottom">
         <div class="table-responsive">
           <table class="table align-items-center mb-0">
@@ -327,10 +327,14 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                          <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
-                                                              onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" data-bs-toggle="tooltip" data-bs-placement="top" title="Foto meio corpo" data-container="body" data-animation="true">
-                                        </div>
+                                      <div class="form-group">
+                                        <select name="genero" required class="form-control form-control-lg">
+                                          <option value="" disabled selected>Genero</option>
+                                          <option value="masculino">Masculino</option>
+                                          <option value="feminino">Feminino</option>
+                                        </select>
+                                      </div>
+                                       
                                     </div>
                                 </div>
                                 <div class="row">
@@ -359,6 +363,11 @@
                                          <div class="form-group">
                                           <input type="text" class="form-control form-control-lg" required name="turma" placeholder="Turma" title="Turma" onkeyup="validate();">
                                         </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
+                                                              onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" data-bs-toggle="tooltip" data-bs-placement="top" title="Foto meio corpo" data-container="body" data-animation="true">
                                         </div>
                                 </div>
                                 <br>

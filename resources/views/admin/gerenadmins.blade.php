@@ -42,7 +42,6 @@
 
 
 
-
 <div class="container-fluid">
   <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -71,7 +70,7 @@
   </div>
   </div>
   
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-bottom: 40px">
     <div class="card shadow-lg mx-4 card-profile-bottom">
           <div class="table-responsive">
             <table class="table align-items-center mb-0">
@@ -219,9 +218,23 @@
                                   <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
                                 </div>
                 
-                                        <div class="form-group">
-                                          <input type="text" class="form-control form-control-lg" class="@error('nome de usuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
-                                        </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control form-control-lg" class="@error('nome de usuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                        <select name="genero" required class="form-control form-control-lg">
+                                          <option value="" disabled selected>Genero</option>
+                                          <option value="masculino">Masculino</option>
+                                          <option value="feminino">Feminino</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                                </div>
+                                       
                                   
                                         <div class="form-group">
                                           <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
