@@ -14,6 +14,13 @@
   <link rel="stylesheet" href="/template/vendors/feather/feather.css">
   <link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="/template/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/page1/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/page1/assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/page1/assets/css/animate.css" />
+    <link rel="stylesheet" href="/page1/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="/page1/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="/page1/assets/css/main.css" />
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -29,6 +36,18 @@
 </head>
 
 <body>
+
+
+  <div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+
     @if(session('msg'))
     <h1 style="font-size: 18px;
       background-color: #d4edda;
@@ -42,6 +61,8 @@
         {{session('msg')}}
       </h1>
     @endif
+
+    
 
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -102,6 +123,14 @@
   <script src="/template/js/template.js"></script>
   <script src="/template/js/settings.js"></script>
   <script src="/template/js/todolist.js"></script>
+  <script src="/page1/assets/js/bootstrap.min.js"></script>
+    <script src="/page1/assets/js/count-up.min.js"></script>
+    <script src="/page1/assets/js/wow.min.js"></script>
+    <script src="/page1/assets/js/tiny-slider.js"></script>
+    <script src="/page1/assets/js/glightbox.min.js"></script>
+    <script src="/page1/assets/js/imagesloaded.min.js"></script>
+    <script src="/page1/assets/js/isotope.min.js"></script>
+    <script src="/page1/assets/js/main.js"></script>
   <!-- endinject -->
 </body>
 

@@ -30,6 +30,20 @@
         <a class="navbar-brand brand-logo-mini" href="/"><img src="/template/img/itel_logo_sapp.png" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+                <form method="GET">
+                  <input type="text" class="form-control" id="navbar-search-input" name="search"  placeholder="Search now" aria-label="search" aria-describedby="search">
+                </form>
+              </div>
+            </div>
+          </li>
+        </ul>
 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
@@ -45,10 +59,12 @@
                   <p class="font-weight-light small-text mb-0 text-muted" style="color: #121212 !important;">
                     Sem notificações
                   </p>
+                  
                 </div>
               </a>
             </div>
           </li>
+          <li class="nav-item">{{$user->name}}</li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="/template/#" data-toggle="dropdown" id="profileDropdown">
               <img src="/img/professores/{{$professor->imagem_professor}}" alt="profile"/>
@@ -88,20 +104,7 @@
               <span class="menu-title">Professor - PT</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Sala</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/professor/sala/criar">Criar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/professor/sala/gerenciar">Gerenciar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Mensagem</a></li>
-              </ul>
-            </div>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
@@ -141,8 +144,9 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Gerenciar</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Mensagem</a></li>
+                <li class="nav-item"> 
+                  <a class="nav-link" href="{{route('gerenorientadores')}}">Gerenciar</a>
+                </li>
               </ul>
             </div>
           </li>

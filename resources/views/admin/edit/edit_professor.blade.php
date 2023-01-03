@@ -1,5 +1,5 @@
 @extends('layouts.adminlayouts')
-@section('boas_vindas')
+@section('content')
 
 @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -53,18 +53,18 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="exampleInputUsername1" class="@error('primeiro nome') is-invalid @enderror" placeholder="Primeiro Nome" value="{{$professor->primeiro_nome}}">
+                                <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="input-field" class="@error('primeiro nome') is-invalid @enderror" placeholder="Primeiro Nome" value="{{$professor->primeiro_nome}}" onkeyup="validate();">
                               </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="exampleInputUsername1" placeholder="Ultimo Nome" value="{{$professor->ultimo_nome}}">
+                                <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="input-field2" placeholder="Ultimo Nome" value="{{$professor->ultimo_nome}}"  onkeyup="validate();">
                               </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" required name="nome_completo" id="exampleInputUsername1" placeholder="Nome Completo" value="{{$professor->nome_completo}}">
+                        <input type="text" class="form-control form-control-lg" required name="nome_completo" id="input-field3" placeholder="Nome Completo" value="{{$professor->nome_completo}}"  onkeyup="validate();">
                     </div>
 
                     <div class="form-group">
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <input type="file" id="image" name="image" class="form-control btn form-control required-lg" accept="image/*"
+                            <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
                         onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 </div>
                               </div>
                               <div class="col-md-6">
-                                <select name="curso" id="" class="form-control" required>
+                                <select name="curso" id="" class="form-control form-control-lg" required>
                                   <option value="" disabled selected>Curso</option>
                                   <option value="informatica" {{$professor->curso == "informatica" ? 'selected=selected' : ''}}>Técnico de Informática</option>
                         <option value="multimedia" {{$professor->curso == "multimedia" ? 'selected=selected' : ''}}>Sistemas de Multimédia</option>
@@ -116,7 +116,7 @@
 
 
                     <div class="mt-3">
-                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
+                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Actualizar</button>
                       </div>
 
                   </form>

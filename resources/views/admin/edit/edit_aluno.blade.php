@@ -1,5 +1,6 @@
 @extends('layouts.adminlayouts')
-@section('boas_vindas')
+
+@section('content')
 
 @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -82,7 +83,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="file" id="image" name="image" class="form-control btn form-control required-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
+                            <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
                                                 onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
                         </div>
                     </div>
@@ -127,7 +128,7 @@
                   </div>
                   
                 <div class="mt-3">
-                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
+                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Actualizar</button>
                   </div>
 
               </form>

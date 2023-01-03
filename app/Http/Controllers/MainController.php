@@ -27,6 +27,8 @@ class MainController extends Controller
         return redirect('/login');
     }
 
+    
+
     public function aluno_dashboard(){
         $user = Auth()->user();
         $aluno = Aluno::where('user_id', $user->id)->first();
@@ -90,17 +92,9 @@ class MainController extends Controller
 
 
     public function admin(Request $request){
-        $search = $request->search;
+            $user = auth()->user();
 
-        if($search){
-            $usuarios = User::where([
-                ['name', 'like', '%'.$search.'%']
-            ]
-        )->orWhere('permissao', 'like', '%'.$search.'%');
-        }else{
-            $usuarios = DB::table('users')->get();
-        }
-        $user = auth()->user();
+            $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
         return view('admin.dashboard', ['user' => $user, 'usuarios' => $usuarios]);
     }
 
@@ -112,13 +106,7 @@ class MainController extends Controller
         return view('orientador.dashboard', ['user' => $user, 'orientador' => $orientador]);
     }
 
-    public function gerenalunos(){
-        $user = Auth()->user();
-
-        $alunos = DB::table('alunos')->join('salas', 'salas.id', 'alunos.sala_id')->join('professores', 'professores.id', 'salas.professore_id')->select('alunos.*')->get();
-
-        return view('professor.gerenalunos', ['user' => $user, 'alunos' => $alunos]);
-    }
+    
 
     public function addaluno() {
         $user = Auth()->user();
@@ -148,14 +136,6 @@ class MainController extends Controller
         $user = Auth()->user();
 
         return view('admin.adicionar_adminoutro', ['user' => $user]);
-    }
-
-    public function edit_professor($id){
-        $user = Auth()->user();
-        $professor = Professore::where('id', $id)->first();
-        $professor_user = User::join('professores', 'professores.user_id','users.id')->where('professores.id', $id)->first();
-
-        return view('admin.edit.edit_professor', ['user' => $user, 'professor' => $professor, 'professor_user' => $professor_user]);
     }
 
    

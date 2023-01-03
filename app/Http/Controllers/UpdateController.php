@@ -18,31 +18,52 @@ class UpdateController extends Controller
     public function admin_definicoes(Request $request){
         $user = auth()->user();
 
-        if (!Hash::check($request->password, $user->password)) {
-            $request->validate([
-                'password' => 'min: 9',
-            ]);
-            $user->update(['password' => Hash::make($request->password)]);
-            Admin::where('user_id', $user->id)->update(['palavra_passe' => Hash::make($request->password)]);
+        if ($request->password != $request->password2) {
+            return back()->with('erro', 'Palavras passes não coincidem');
         }else{
-            return back()->with('erro', 'Está é a senha actual!');
-        }
+            if(!Hash::check($request->password, $user->password)) {
+                $request->validate([
+                    'password' => 'min: 9',
+                ]);
+                $user->update(['password' => Hash::make($request->password)]);
+                Admin::where('user_id', $user->id)->update(['palavra_passe' => Hash::make($request->password)]);
+            }
+    
+            if($user->nomeusuario != $request->nomeusuario){
+                $request->validate([
+                    'nomeusuario' => 'string|unique:users',
+                ]);
+                $user->update(['nomeusuario' => $request->nomeusuario]);
+            }
+            if($user->email != $request->email){
+                $request->validate([
+                    'email' => 'email|unique:users',
+                ]);
+                $user->update(['email' => $request->email]);
+                Admin::where('user_id', $user->id)->update(['email' => $request->email]);
+            }
 
-        if($user->nomeusuario != $request->nomeusuario){
-            $request->validate([
-                'nomeusuario' => 'string|unique:users',
-            ]);
-            $user->update(['nomeusuario' => $request->nomeusuario]);
-        }
-        if($user->email != $request->email){
-            $request->validate([
-                'email' => 'email|unique:users',
-            ]);
-            $user->update(['email' => $request->email]);
-            Admin::where('user_id', $user->id)->update(['email' => $request->email]);
-        }
+            Admin::where('user_id', $user->id)->update(['genero' => $request->genero]);
 
-        return back()->with('msg', 'Dados actualizados com sucesso!');
+            if ($request->hasfile('image') && $request->file('image')->isValid()) {
+
+                $requestImage = $request->image;
+    
+                $extension = $requestImage->extension();
+    
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+    
+                $requestImage->move(public_path('img/admins'), $imageName);
+
+                Admin::where('user_id', $user->id)->update(['imagem_admin' => $imageName]);
+
+                return back()->with('msg', 'Dados actualizados com sucesso!');
+            }else{
+                return back()->with('msg', 'Dados actualizados com sucesso!');
+            }
+    
+        }
+       
     }
 
     public function update_aluno(Request $request){

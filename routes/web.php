@@ -30,6 +30,8 @@ Route::get('/orientador', [MainController::class, 'orientador'])->middleware('au
 
 
 Route::get('/admin', [MainController::class, 'admin'])->middleware('auth')->middleware('admin')->middleware('block');
+Route::get('/admin/perfil', [GetController::class, 'admin_perfil'])->middleware('auth')->middleware('admin')->middleware('block');
+
 Route::put('/admin/lock/{id}', [EventController::class, 'lock_user'])->middleware('auth')->middleware('admin')->name('lock')->middleware('block');
 Route::put('/admin/unlock/{id}', [EventController::class, 'unlock_user'])->middleware('auth')->middleware('admin')->middleware('block');
 Route::delete('/admin/delete/{id}', [EventController::class, 'destroy_user'])->middleware('auth')->middleware('admin')->middleware('block');
@@ -59,7 +61,7 @@ Route::get('/admin/adicionar/professor', [MainController::class, 'addprofessor']
 Route::post('/admin/cadastro/professor', [CadastroController::class, 'store_professor'])->middleware('auth')->middleware('admin')->name('store_professor')->middleware('block');
 Route::get('/admin/gerenciar/professor', [GetController::class, 'gerenprofessor'])->middleware('auth')->middleware('admin')->name('gerenprofessor')->middleware('block');
 Route::delete('/admin/delete/professor/{id}', [DeleteController::class, 'destroy_professor'])->middleware('auth')->middleware('admin')->middleware('block');
-Route::get('/admin/edit_professor/{id}', [MainController::class, 'edit_professor'])->middleware('auth')->middleware('admin')->middleware('block');
+Route::get('/admin/edit_professor/{id}', [GetController::class, 'edit_professor'])->middleware('auth')->middleware('admin')->middleware('block');
 Route::put('/admin/update_professor/{id}', [UpdateController::class, 'update_professor'])->middleware('auth')->middleware('admin')->middleware('block');
 
 
@@ -71,8 +73,7 @@ Route::delete('/admin/delete/orientador/{id}', [DeleteController::class, 'destro
 
 Route::get('/admin', [MainController::class, 'admin'])->middleware('auth')->middleware('admin')->name('voltaradmin')->middleware('block');
 Route::get('/admin/definicoes', [GetController::class, 'admin_definicoes'])->middleware('auth')->middleware('admin')->name('admin_definicoes')->middleware('block');
-Route::put('/admin/definicoes/update', [UpdateController::class, 'admin_definicoes'])->middleware('auth')->middleware('admin')->name('admin_defi_update')->middleware('block');
-Route::post('/admin/senha/email/{id}', [CadastroController::class, 'enviar_email'])->middleware('auth')->middleware('admin')->middleware('block');
+Route::put('/admin/perfil/update', [UpdateController::class, 'admin_definicoes'])->middleware('auth')->middleware('admin')->name('admin_defi_update')->middleware('block');
 
 Route::get('/', [MainController::class, 'index']);
 
@@ -100,8 +101,11 @@ Route::post('/cadastro/professor/sala_criar', [CadastroController::class, 'store
 Route::get('/professor/sala/gerenciar', [MainController::class, 'gerensalas'])->middleware('auth')->middleware('prof')->middleware('block');
 Route::get('/professor/definicoes', [MainController::class, 'definicoes'])->middleware('auth')->middleware('prof')->middleware('block');
 Route::put('/cadastro/professor/{professor_id}', [CadastroController::class, 'update_definicoes'])->middleware('auth')->middleware('prof')->middleware('block');
-Route::get('/professor/alunos/gerenciar', [MainController::class, 'gerenalunos'])->middleware('auth')->middleware('prof')->middleware('block');
-Route::delete('/professor/aluno/{id_aluno}', [CadastroController::class, 'delete_aluno_sala'])->middleware('auth')->middleware('prof')->middleware('block');
+
+Route::get('/professor/alunos/gerenciar', [GetController::class, 'gerenalunos'])->middleware('auth')->middleware('prof')->middleware('block');
+
+Route::get('/professor/orientadores/gerenciar', [GetController::class, 'gerenorientadores'])->middleware('auth')->name('gerenorientadores')->middleware('prof')->middleware('block');
+
 
 Route::get('/escolha', [MainController::class, 'escolha']);
 

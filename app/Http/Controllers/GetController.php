@@ -31,6 +31,7 @@ class GetController extends Controller
     public function gerenadmins(Request $request){
         $user = Auth()->user();
         $search = $request->search;
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
 
         if($search){
             $admins = Admin::join('users', 'admins.user_id', 'users.id')->select('users.id as userid', 'users.*', 'admins.*')
@@ -39,12 +40,13 @@ class GetController extends Controller
         }else{
             $admins = Admin::join('users', 'admins.user_id', 'users.id')->select('users.id as userid', 'users.*', 'admins.*')->get();
         }
-        return view('admin.gerenadmins', ['user' => $user, 'admins' => $admins]);
+        return view('admin.gerenadmins', ['user' => $user, 'admins' => $admins, 'usuarios' => $usuarios]);
     }
 
     public function gerenaluno(Request $request){
         $user = Auth()->user();
         $search = $request->search;
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
 
         if($search){
             $alunos = Aluno::join('users', 'alunos.user_id', 'users.id')->select('users.id as userid', 'users.*', 'alunos.*')
@@ -53,12 +55,13 @@ class GetController extends Controller
         }else{
             $alunos = Aluno::join('users', 'alunos.user_id', 'users.id')->select('users.id as userid', 'users.*', 'alunos.*')->get();
         }
-        return view('admin.gerenalunos', ['user' => $user, 'alunos' => $alunos]);
+        return view('admin.gerenalunos', ['user' => $user, 'alunos' => $alunos, 'usuarios' => $usuarios]);
     }
 
     public function gerenprofessor(Request $request){
         $user = Auth()->user();
         $search = $request->search;
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
 
         if($search){
             $professores = Professore::join('users', 'professores.user_id', 'users.id')->select('users.id as userid', 'users.*', 'professores.*')
@@ -68,7 +71,7 @@ class GetController extends Controller
         }else{
             $professores = Professore::join('users', 'professores.user_id', 'users.id')->select('users.id as userid', 'users.*', 'professores.*')->get();
         }
-        return view('admin.gerenprofessores', ['user' => $user, 'professores' => $professores]);
+        return view('admin.gerenprofessores', ['user' => $user, 'professores' => $professores, 'usuarios' => $usuarios]);
     }
 
     public function gerenorientador(Request $request){
@@ -111,16 +114,79 @@ class GetController extends Controller
     public function edit_aluno($id){
             $user = Auth()->user();
             $aluno = Aluno::join('users', 'users.id', 'alunos.user_id')->where('alunos.id', $id)->first();
-            
-            return view('admin.edit.edit_aluno', ['user' => $user, 'aluno' => $aluno]);
+            $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
+
+
+            return view('admin.edit.edit_aluno', ['user' => $user, 'aluno' => $aluno, 'usuarios' => $usuarios]);
         
     }
 
     public function edit_admin($id){
         $user = Auth()->user();
-        $admin = Admin::where('id', $id)->first();
-        $admin_user = User::join('admins', 'admins.user_id','users.id')->where('admins.id', $id)->first();
+        $admin = Admin::join('users', 'users.id', 'admins.user_id')->where('admins.id', $id)->first();
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
 
-        return view('admin.edit.edit_admin', ['user' => $user, 'admin' => $admin, 'admin_user' => $admin_user]);
+        return view('admin.edit.edit_admin', ['user' => $user, 'admin' => $admin, 'usuarios' => $usuarios]);
     }
+
+
+    public function gerenalunos(Request $request){
+        $user = Auth()->user();
+        $professor = Professore::join('users', 'users.id', 'professores.user_id')->where('professores.user_id', $user->id)->first();
+
+        $search = $request->search;
+
+        if($search){
+          $alunos = Aluno::where([
+            ['nome_completo', 'like', '%'.$search.'%']
+          ])->orWhere([
+            ['turma', 'like', '%'.$search.'%']
+          ])->orwhere('genero', 'like', '%'.$search.'%')
+          ->get();
+          }else{
+            $alunos = Aluno::where('curso', $professor->curso)->orderBy('turma')->orderBy('nome_completo')->get();
+          }
+
+        return view('professor.gerenalunos', ['user' => $user, 'alunos' => $alunos, 'professor' => $professor]);
+    }
+
+    public function gerenorientadores(Request $request){
+        $user = Auth()->user();
+        $professor = Professore::join('users', 'users.id', 'professores.user_id')->where('professores.user_id', $user->id)->first();
+
+        $search = $request->search;
+
+        if($search){
+          $orientadores = Aluno::where([
+            ['nome_completo', 'like', '%'.$search.'%']
+          ])->orWhere([
+            ['turma', 'like', '%'.$search.'%']
+          ])->orwhere('genero', 'like', '%'.$search.'%')
+          ->join('')->get();
+          }else{
+            $orientadores = Orientadore::where('orientadores.curso', $professor->curso)->orderBy('orientadores.nome_completo')
+           ->join('alunos', 'orientadores.id', 'alunos.orientadore_id')
+            ->get();
+          }
+
+        return view('professor.gerenorientadores', ['user' => $user, 'orientadores' => $orientadores, 'professor' => $professor]);
+    }
+
+    public function edit_professor($id){
+        $user = Auth()->user();
+        $professor = Professore::where('id', $id)->first();
+        $professor_user = User::join('professores', 'professores.user_id','users.id')->where('professores.id', $id)->first();
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
+
+        return view('admin.edit.edit_professor', ['user' => $user, 'professor' => $professor, 'professor_user' => $professor_user, 'usuarios' => $usuarios]);
+    }
+
+    public function admin_perfil(Request $request){
+        $user = auth()->user();
+
+        $usuarios = DB::table('users')->join('admins', 'admins.user_id', 'users.id')->where('users.id', $user->id)->first();
+
+        return view('admin.perfil', ['user' => $user, 'usuarios' => $usuarios]);
+    }
+
 }

@@ -2,292 +2,241 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard - SAPP</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="/template/vendors/feather/feather.css">
-  <link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="/template/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="/template/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="/template/js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-  
-  <!-- inject:css -->
-  <link rel="stylesheet" href="/template/css/vertical-layout-light/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="/template/img/itel_logo_sapp.png" />
-  <style>
-    .scroll-bar{
-      height: 100%;
-      width: 100%;
-     overflow: auto;
-     white-space: nowrap;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/logo-itel-sapp.png">
+  <title>
+    Admin SAPP
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
-<body>
-  <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="/"><img src="/template/img/itel_logo_sapp.png" class="mr-2" alt="logo"/><span class="h3">SAPP</span></a>
-        <a class="navbar-brand brand-logo-mini" href="/"><img src="/template/img/itel_logo_sapp.png" alt="logo"/></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-      <ul class="navbar-nav mr-lg-2">
-        <li class="nav-item nav-search d-none d-lg-block">
-          <div class="input-group">
-            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-              <span class="input-group-text" id="search">
-                <i class="icon-search"></i>
-              </span>
-              <form method="GET">
-                <input type="text" class="form-control" id="navbar-search-input" name="search"  placeholder="Search now" aria-label="search" aria-describedby="search">
-              </form>
+
+
+<body class="g-sidenav-show   bg-gray-100">
+  <div class="min-height-80 bg-primary1 position-absolute w-100"></div>
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs fixed-start" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="/">
+        <img src="/assets/img/logo-itel-sapp.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold h5">SAPP</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
-          </div>
+            <span class="nav-link-text ms-1">Administrador</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/admin/gerenciar/aluno">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-fill text-primary text-sm opacity-10" viewBox="0 0 16 16">
+                <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1 fw-600">Alunos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/admin/gerenciar/professor">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-fill text-primary text-sm opacity-10" viewBox="0 0 16 16">
+                <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1 fw-600">Professores</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/admin/gerenciar/admins">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-fill text-primary text-sm opacity-10" viewBox="0 0 16 16">
+                <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1 fw-600">Administradores</span>
+          </a>
         </li>
       </ul>
+    </div>
+  </aside>
 
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+  
+    
+    <!-- Navbar -->
+    <main class="main-content position-relative border-radius-lg ">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+      <div class="container-fluid py-1 px-3 mt--7">
 
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="/template/#" data-toggle="dropdown">
-              <i class="icon-bell mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Notificações</p>
-              <a class="dropdown-item preview-item">
-
-                <div class="preview-item-content">
-                  <p class="font-weight-light small-text mb-0 text-muted" style="color: #121212 !important;">
-                    Sem notificações
-                  </p>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript: ;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-primary"></i>
+                  <i class="sidenav-toggler-line bg-primary"></i>
+                  <i class="sidenav-toggler-line bg-primary"></i>
                 </div>
               </a>
-            </div>
-          </li>
-          <li class="nav-item">{{$user->name}}</li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="/template/#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/template/images/faces/face28.jpg" alt="profile"/>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a  class="dropdown-item" href="{{route('admin_definicoes')}}"><i class="ti-settings text-primary"></i> Definições</a>
-              
-              <form action="/logout" method="POST">
-                @csrf
-                <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
-                this.closest('form').submit();"><i class="ti-power-off text-primary"></i>Terminar Sessão</a>
-            </form>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="icon-menu"></span>
-        </button>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="card-body p-3">
+                <div class="row gx-4">
+                  <div class="col-auto my-auto">
+                    <div class="h-100">
+                      <h6 class="mb-1">
+                       {{$user->name}}
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="avatar avatar-xl position-relative">
+                      <img src="/img/admins/{{$usuarios->imagem_admin}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    </div>
+                  </div>
+                </div>
+              </div>      
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="/admin/perfil">
+                    Perfil
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <form action="/logout" method="POST">
+                    @csrf
+                    <a class="dropdown-item" href="/logout" onclick="event.preventDefault();
+                    this.closest('form').submit();">
+                      Sair
+                    </a>
+                    
+                </form>
+                 
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-primary p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/img/team-1.jpg" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Nova mensagem</span> do Orientador
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutos
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Otiniel fez altrações</span> na pág 21
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 dia
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <title>credit-card</title>
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g transform="translate(1716.000000, 291.000000)">
+                                <g transform="translate(453.000000, 454.000000)">
+                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
+                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Payment successfully completed
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          2 days
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                  <div class="form-check form-switch ps-0 ms-auto my-auto mb-2">
+                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+                  </div>
+              </a>
+            </li>
+
+          </ul>
+        </div>
       </div>
     </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_settings-panel.html -->
-      <div class="theme-setting-wrapper">
-        <div id="theme-settings" class="settings-panel">
-          <i class="settings-close ti-close"></i>
-          <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
-          <p class="settings-heading mt-2">HEADER SKINS</p>
-          <div class="color-tiles mx-0 px-4">
-            <div class="tiles success"></div>
-            <div class="tiles warning"></div>
-            <div class="tiles danger"></div>
-            <div class="tiles info"></div>
-            <div class="tiles dark"></div>
-            <div class="tiles default"></div>
-          </div>
-        </div>
-      </div>
-
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item bg-primary dash">
-            <a class="nav-link" href="{{route('voltaradmin')}} ">
-              <i class="icon-grid menu-icon text-white"></i>
-              <span class="menu-title">Administrador</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts_aluno" aria-expanded="false" aria-controls="charts_aluno">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Alunos</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts_aluno">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('addaluno')}}">Adicionar</a></li>
+    <!-- End Navbar -->
 
 
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('gerenaluno')}}">Gerenciar</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts_professor" aria-expanded="false" aria-controls="charts_professor">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Professores</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts_professor">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('addprofessor')}}">Adicionar</a></li>
+   @yield('content')
 
 
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('gerenprofessor')}}">Gerenciar</a></li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts_orientador" aria-expanded="false" aria-controls="charts_orientador">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Orientadores</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts_orientador">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('gerenorientador')}}">Gerenciar</a></li>
-              </ul>
-            </div>
-          </li>
-
-       <!--   <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts_coordenador" aria-expanded="false" aria-controls="charts_coordenador">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Coordenadores</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts_coordenador">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('addcordenador')}}">Adicionar</a></li>
-
-
-
-                <li class="nav-item"> <a class="nav-link" href="">Gerenciar</a></li>
-              </ul>
-            </div>
-          </li> -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts_ad" aria-expanded="false" aria-controls="charts_ad">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Admininstradores</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts_ad">
-              <ul class="nav flex-column sub-menu">
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('addadminoutro')}}">Adicionar</a></li>
-
-
-
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin_gerenciar_admin')}}">Gerenciar</a></li>
-              </ul>
-            </div>
-          </li>
-
-
-
-
-
-
-        </ul>
-      </nav>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h6 class="font-weight-normal mb-0"><span class="text-primary"></span></h6>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-         
-          <div class="scroll-bar">
-              <h3>Painel administrativo do SAPP</h3><br>
-             @yield('boas_vindas')
-            
-            
-            @yield('section')
-          </div>
-
-
-
-
-
-
-
-         </div>
-         </div>
-         </div>
-         </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">SAPP - Sistema de Auxílio de Projectos da PAP</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-white">ITEL PAP 2022</span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-
-  <!-- plugins:js -->
-  <script src="/template/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="/template/vendors/chart.js/Chart.min.js"></script>
-  <script src="/template/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="/template/js/dataTables.select.min.js"></script>
-
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="/template/js/off-canvas.js"></script>
-  <script src="/template/js/hoverable-collapse.js"></script>
-  <script src="/template/js/template.js"></script>
-  <script src="/template/js/settings.js"></script>
-  <script src="/template/js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="/template/js/dashboard.js"></script>
-  <script src="/template/js/Chart.roundedBarCharts.js"></script>
+  </main>
+    
+  <!--   Core JS Files   -->
+  <script src="/assets/js/core/popper.min.js"></script>
+  <script src="/assets/js/core/bootstrap.min.js"></script>
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/chartjs.min.js"></script>
   
   <script>
     function validate() {
@@ -303,10 +252,104 @@
     element4.value = element4.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
     };
 
-
     </script>
-  <!-- End custom js for this page-->
+
+  <script>
+    var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#5e72e4",
+          backgroundColor: gradientStroke1,
+          borderWidth: 3,
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+
 </body>
 
 </html>
-
