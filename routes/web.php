@@ -50,6 +50,9 @@ Route::put('/admin/update_admin/{id}', [UpdateController::class, 'update_admins'
 //admin alunos
 Route::get('/admin/adicionar/aluno', [MainController::class, 'addaluno'])->middleware('auth')->middleware('admin')->name('addaluno')->middleware('block');
 Route::post('/admin/acadastro/aluno', [CadastroController::class, 'store_alunos'])->middleware('auth')->middleware('admin')->name('store_alunos')->middleware('block');
+Route::post('/admin/acadastro/aluno_excell', [CadastroController::class, 'store_alunos2'])->middleware('auth')->middleware('admin')->name('cadasalunoexcell')->middleware('block');
+
+
 Route::get('/admin/gerenciar/aluno', [GetController::class, 'gerenaluno'])->middleware('auth')->middleware('admin')->name('gerenaluno')->middleware('block');
 Route::delete('/admin/delete/aluno/{id}', [DeleteController::class, 'destroy_aluno'])->middleware('auth')->middleware('admin')->middleware('block');
 Route::get('/admin/edit_aluno/{id}', [GetController::class, 'edit_aluno'])->middleware('auth')->middleware('admin')->name('edit_aluno')->middleware('block');

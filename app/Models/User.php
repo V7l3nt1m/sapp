@@ -28,6 +28,7 @@ class User extends Authenticatable
         'email',
         'nomeusuario',
         'password',
+        'permissao',
         'estado',
         'hora_login',
         'hora_logout',

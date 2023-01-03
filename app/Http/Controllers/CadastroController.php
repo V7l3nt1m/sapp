@@ -13,6 +13,8 @@ use App\Models\Orientadore;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 
 
 class CadastroController extends Controller
@@ -149,6 +151,14 @@ class CadastroController extends Controller
             return back()->with('msg', "Cadastro feito com sucesso!");
 
 
+    }
+
+    public function store_alunos2(Request $request){
+        $turma = $request->turma;
+        $curso = $request->curso;
+
+        Excel::import(new UsersImport($turma, $curso), $request->file('arquivo'));
+        return back()->with('msg', 'Cadastro feito com sucesso!');
     }
 
     public function store_orientador(Request $request)
@@ -407,5 +417,7 @@ class CadastroController extends Controller
             return redirect('/aluno');
         }
     }
+
+
    
 }

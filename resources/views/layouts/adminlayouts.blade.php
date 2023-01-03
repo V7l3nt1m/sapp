@@ -350,6 +350,45 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 
+  <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  </script>
+
+<script type="text/javascript">
+  function updatePreview(input, target) {
+    let file = input.files[0];
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        let img = document.getElementById(target);
+        // can also use "this.result"
+        img.src = reader.result;
+    }
+  }
+  </script>
+
+  <script>
+   const triggerEl = document.querySelector('#myTab button[data-bs-target="#profile"]')
+bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+
+const triggerFirstTabEl = document.querySelector('#myTab li:first-child button')
+bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
+  </script>
+
+  <script>
+    const triggerTabList = document.querySelectorAll('#myTab button')
+triggerTabList.forEach(triggerEl => {
+  const tabTrigger = new bootstrap.Tab(triggerEl)
+
+  triggerEl.addEventListener('click', event => {
+    event.preventDefault()
+    tabTrigger.show()
+  })
+})
+  </script>
 </body>
 
 </html>
