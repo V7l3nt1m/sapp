@@ -48,25 +48,25 @@
     <div class="card-body p-3">
       <div class="row gx-4">
         <div class="col-auto my-auto">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group">
-                  <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                  <form action="" method="GET">
-                    <input type="text" class="form-control" placeholder="Pesquise aqui..." name="search">
-                  </form>
-                </div>
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <form action="" method="get">
+              <div class="input-group">
+                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Type here..." name="search">
               </div>
+            </form>
+          </div>
         </div>
         <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
           <div class="nav-wrapper position-relative end-0">
             <ul class="nav nav-pills nav-fill p-1" role="tablist">
               <li class="nav-item">
-                <input type="file" class="form-control" placeholder="">
+                    <input type="button" class="btn bg-gradient-info btn-block" value="Cadastrar Administrador" style="width: 100%; height: 100%; background: #004d8b; color: white"  data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
+                  </div>
               </li>
             </ul>
           </div>
         </div>
-      </div>
     </div>
   </div>
   </div>
@@ -137,7 +137,7 @@
                   </td>
                   
                   <td class="align-middle text-center">
-                      <button class="btn btn-sm bg-gradient-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-sm" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="background: #004d8b; color: white">
                         Acções
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -192,6 +192,70 @@
   
       </div>
     </div>
+    </div>
+  
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body p-0">
+              <div class="card card-plain">
+                <div class="card-body pb-3">
+                  <div class="background">
+                    <div class=" d-flex align-items-center auth px-0">
+                      <div class="row w-100 mx-0">
+                        <div class=" mx-auto">
+                          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <h3>Cadastre outros Administradores</h3>
+                            <h6 class="font-weight-light">Preencha os dados corretamente.</h6>
+                              <form class="pt-3" method="POST" action="{{route('admin_cadastro_admin')}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" class="@error('nome completo') is-invalid @enderror" required name="nome_completo" id="input-field" placeholder="Nome Completo" onkeyup="validate();">
+                                </div>
+                
+                                <div class="form-group">
+                                  <input type="email" name="email" class="form-control form-control-lg" class="@error('email') is-invalid @enderror" required id="exampleInputEmail1" placeholder="Email">
+                                </div>
+                
+                                        <div class="form-group">
+                                          <input type="text" class="form-control form-control-lg" class="@error('nome de usuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                                        </div>
+                                  
+                                        <div class="form-group">
+                                          <input type="file" id="image" name="image" class="form-control form-control-lg" class="@error('imagem') is-invalid @enderror" accept="image/*"
+                                                              onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo"  required="required" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" >
+                                        </div>
+                
+                                        <div class="row">
+                                          <div class="col-md-3"></div>
+                                          <div class="col-md-5">
+                                            <label for="">Previsualização da Imagem</label>
+                                            <img id="image-preview"
+                                            class="img-fluid img-thumbnail rounded d-block" width="400px">
+                                          </div>
+                                          <div class="col-md-3"></div>
+                                        </div>
+                
+                                <div class="mt-3">
+                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
+                                  </div>
+                
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- content-wrapper ends -->
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 

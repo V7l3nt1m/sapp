@@ -47,25 +47,25 @@
     <div class="card-body p-3">
       <div class="row gx-4">
         <div class="col-auto my-auto">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <div class="input-group">
-                  <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                  <form action="" method="GET">
-                    <input type="text" class="form-control" placeholder="Pesquise aqui..." name="search">
-                  </form>
-                </div>
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <form action="" method="get">
+              <div class="input-group">
+                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="Type here..." name="search">
               </div>
+            </form>
+          </div>
         </div>
         <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
           <div class="nav-wrapper position-relative end-0">
             <ul class="nav nav-pills nav-fill p-1" role="tablist">
               <li class="nav-item">
-                <input type="file" class="form-control" placeholder="">
+                    <input type="button" class="btn bg-gradient-info btn-block" value="Cadastrar Professor" style="width: 100%; height: 100%; background: #004d8b; color: white"  data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
+                  </div>
               </li>
             </ul>
           </div>
         </div>
-      </div>
     </div>
   </div>
   </div>
@@ -139,7 +139,7 @@
                   </td>
                   
                   <td class="align-middle text-center">
-                      <button class="btn btn-sm bg-gradient-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn btn-sm bg-gradient-primary" style="background: #004d8b; color: white" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Acções
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -196,102 +196,169 @@
     </div>
     </div>
  
-<!--
-<div class="">
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Curso</th>
-        <th>Estado</th>
-        <th>Logado</th>
-        <th>Hora do Login</th>
-        <th>Hora do Logout</th>
-        <th>Acções</th>
-      </thead>
-      <tbody>
-        @foreach($professores as $professore)
-        <tr>
-          <td>{{$professore->id}}</td>
-          <td>{{$professore->nome_completo}}</td>
-          <td>{{$professore->email}}</td>
-          <td>{{$professore->curso}}</td>
-          @if($professore->estado == 1)
-          <td>Activa</td>
-          @else
-          <td>Bloqueada</td>
-          @endif
-          @if(DB::table('sessions')->where('user_id', $professore->userid)->first())
-          <td>Logado</td>
-          @else
-          <td>Deslogado</td>
-          @endif
-          <td>{{$professore->hora_login}}</td>
-          <td>{{$professore->hora_logout}}</td>
+
+    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                  <h3 class="font-weight-bolder" style="color: #004d8b">Cadastrar Professor</h3>
+                <br>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Arquivo Excell</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Formulário</button>
+                    </li>
+                    
+                  </ul>
   
-          <td>
-            <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item nav-profile dropdown">
-                <a class="nav-link dropdown-toggle" href="/template/#" data-toggle="dropdown" id="profileDropdown">
-
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                  <a class="dropdown-item">
-                    @if($professore->estado == "1")
-                    <form action="/admin/lock/{{$professore->userid}}" method="POST">
-                      @csrf
-                      @method('PUT')
-                      <button type="submit" class="btn" style="width: 100%">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                        </svg> Bloquear
-                      </button>
-                    </form>
-                    @else
-                    <form action="/admin/unlock/{{$professore->userid}}" method="POST">
-                      @csrf
-                      @method('PUT')
-                      <button type="submit" class="btn" style="width: 100%">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
-                          <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/>
-                        </svg> Desbloquear
-                      </button>
-                    </form>
-                    @endif
-                  </a>
-                  
-                  <a class="dropdown-item" href="/admin/edit_professor/{{$professore->id}}" style="background-color: #004d8b;">
-                    <button type="submit" class="btn" style="width: 100%">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                      </svg> Actualizar
-                    </button>
-                </a>
-
-                  <a class="dropdown-item" style="background-color: red;">
-                    <form action="/admin/delete/professor/{{$professore->userid}}" method="POST">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn"  style="width: 100%; color:#004d8b;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                        </svg> Eliminar
-                      </button>
-                    </form>
-                  </a>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                      <div class="d-flex align-items-center auth px-0">
+                        <div class="row w-100 mx-0">
+                          <div class="mx-auto">
+                            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                              <h6 class="font-weight-light" style="
+                              margin-top: 20px !important;
+                          ">Faça o upload de arquivo Excell com as seguintes tabelas:</h6>
+  
+                <div class="card card-blog card-plain">
+                  <div class="position-relative">
+                    <a class="d-block blur-shadow-image">
+                      <img src="/img/dadoprofessor.png" alt="img-blur-shadow" class="img-fluid shadow">
+                    </a>
+                  </div>
+                
                 </div>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
-</div>
--->
+                <br>
+                <p>
+                  <i style="font-size: 15px">Obs:Os titulos das colunas não devem constar no arquivo!</i>
+                </p>
+  
+                                     
+                                    
+                                    <br>
+  
+                      <form action="{{route('cadasprofessorexcell')}}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        @method('POST')
+                        <input type="file" class="form-control" name="arquivo" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required data-bs-toggle="tooltip" data-bs-placement="top" title="Apenas arquivos Excell" data-container="body" data-animation="true">
+  
+                        <br>
+  
+                        
+  
+                        <br>
+                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
+                      </form>
+  
+  
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+  
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                      <div class="d-flex align-items-center auth px-0">
+                        <div class="row w-100 mx-0">
+                          <div class="mx-auto">
+                            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                              <h6 class="font-weight-light" style="
+                              margin-top: 10px !important;
+                          ">Preencha os dados corretamente.</h6>
+                               <form class="pt-3" method="POST" action="{{route('store_professor')}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-lg" required name="primeiro_nome" id="input-field" placeholder="Primeiro Nome">
+                                          </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-lg" required name="ultimo_nome" id="input-field2" placeholder="Ultimo Nome" >
+                                          </div>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" required name="nome_completo"  id="input-field3" placeholder="Nome Completo" >
+                                </div>
+            
+                                <div class="form-group">
+                                  <input type="email"  name="email" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" class="@error('nome de usuario') is-invalid @enderror" required name="nome_de_usuario" id="input-field3" placeholder="Nome de usuário" title="username de inicio de sessão" onkeyup="validate();">
+                                  </div>
+            
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="date" name="data_de_nascimento" class="form-control form-control-lg" required id="exampleInputEmail1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="file" id="image" name="image" class="form-control form-control-lg" accept="image/*"
+                                    onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  placeholder="Foto meio corpo" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip"  data-placement="top" required>
+                                    </div>
+                                </div>
+            
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="number" name="telefone" class="form-control form-control-lg" required id="exampleInputEmail1" placeholder="Telefone">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <select name="curso" id="" class="form-control form-control-lg" required>
+                                              <option value="" disabled selected>Curso</option>
+                                              <option value="informatica">Técnico de Informática</option>
+                                    <option value="multimedia">Sistemas de Multimédia</option>
+                                    <option value="electronica">Electronica e Telecomunicações</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        
+            
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-5">
+                                              <label for="">Previsualização da Imagem</label>
+                                              <img id="image-preview"
+                                              class="img-fluid img-thumbnail rounded d-block" width="400px">
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                          </div>
+            
+            
+            
+                                <div class="mt-3">
+                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Cadastrar</button>
+                                  </div>
+            
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+  
+                    </div>
+                  </div>
+  
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 @endsection

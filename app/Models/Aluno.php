@@ -10,17 +10,22 @@ class Aluno extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'n_processo',
         'primeiro_nome',
         'ultimo_nome',
         'nome_completo',
         'email',
+        'data_nasc',
         'telefone',
         'imagem_aluno',
         'curso',
         'repetente',
         'palavra_passe',
         'user_id',
+        'turma',
+        'curso',
+        'genero',
 
     ];
     protected $hiden = ['palavra_passe'];

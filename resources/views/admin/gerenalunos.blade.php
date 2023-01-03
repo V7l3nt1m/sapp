@@ -60,7 +60,7 @@
         <div class="nav-wrapper position-relative end-0">
           <ul class="nav nav-pills nav-fill p-1" role="tablist">
             <li class="nav-item">
-                  <input type="button" class="btn bg-gradient-info btn-block" value="Cadastrar Alunos" style="width: 100%; height: 100%" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
+                  <input type="button" class="btn bg-gradient-info btn-block" value="Cadastrar Aluno" style="width: 100%; height: 100%; background: #004d8b; color: white" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
                 </div>
             </li>
           </ul>
@@ -144,7 +144,7 @@
                 </td>
                 
                 <td class="align-middle text-center">
-                    <button class="btn btn-sm bg-gradient-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-sm bg-gradient-primary" type="button" id="dropdownMenuButton" style="background: #004d8b; color: white" data-bs-toggle="dropdown" aria-expanded="false">
                       Acções
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -224,7 +224,6 @@
 
                 <div class="tab-content" id="myTabContent">
                   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-
                     <div class="d-flex align-items-center auth px-0">
                       <div class="row w-100 mx-0">
                         <div class="mx-auto">
@@ -233,18 +232,18 @@
                             margin-top: 20px !important;
                         ">Faça o upload de arquivo Excell com as seguintes tabelas:</h6>
 
-<div class="card card-blog card-plain">
-  <div class="position-relative">
-    <a class="d-block blur-shadow-image">
-      <img src="/img/excell.png" alt="img-blur-shadow" class="img-fluid shadow">
-    </a>
-  </div>
- 
-</div>
-<br>
-<p>
-  <i style="font-size: 15px">O campo email é opcional</i>
-</p>
+              <div class="card card-blog card-plain">
+                <div class="position-relative">
+                  <a class="d-block blur-shadow-image">
+                    <img src="/img/excell.png" alt="img-blur-shadow" class="img-fluid shadow">
+                  </a>
+                </div>
+              
+              </div>
+              <br>
+              <p>
+                <i style="font-size: 15px">Obs: O campo email é opcional. Os titulos das colunas não devem constar no arquivo!</i>
+              </p>
 
                                    
                                   
@@ -286,7 +285,6 @@
             </div>
 
                   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-
                     <div class="d-flex align-items-center auth px-0">
                       <div class="row w-100 mx-0">
                         <div class="mx-auto">
@@ -389,8 +387,7 @@
                   </div>
                 </div>
 
-              
-            
+
           </div>
         </div>
       </div>

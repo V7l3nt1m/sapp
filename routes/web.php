@@ -67,10 +67,10 @@ Route::delete('/admin/delete/professor/{id}', [DeleteController::class, 'destroy
 Route::get('/admin/edit_professor/{id}', [GetController::class, 'edit_professor'])->middleware('auth')->middleware('admin')->middleware('block');
 Route::put('/admin/update_professor/{id}', [UpdateController::class, 'update_professor'])->middleware('auth')->middleware('admin')->middleware('block');
 
+Route::post('/admin/cadastro/professor_excell', [CadastroController::class, 'store_professor2'])->middleware('auth')->middleware('admin')->name('cadasprofessorexcell')->middleware('block');
+
 
 //Orientadores
-Route::get('/admin/gerenciar/orientador', [GetController::class, 'gerenorientador'])->middleware('auth')->middleware('admin')->name('gerenorientador')->middleware('block');
-Route::delete('/admin/delete/orientador/{id}', [DeleteController::class, 'destroy_orientador'])->middleware('auth')->middleware('admin')->middleware('block');
 
 
 

@@ -14,17 +14,21 @@ class UsersImport implements ToCollection
 {
     protected $turma;
     protected $curso;
+    
     /**
     * @param Collection $collection
     */
+    function __construct($turma, $curso) {
+        $this->turma = $turma;
+        $this->curso = $curso;
+ }
     public function collection(Collection $rows)
     {
         $user_anterior = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
-
         foreach ($rows as $row) 
         {
-            User::create([
-                'id' => $user_anterior->id + 1,
+            User::insert([
+                'id' => $user_anterior->id+1,
                 'name' => $row[1],
                 'email' => $row[3],
                 'password' => Hash::make("aluno2022"),
@@ -32,18 +36,21 @@ class UsersImport implements ToCollection
                 'nomeusuario' => $row[0],
             ]);
 
-            Aluno::create([
-                'n_processo' => $row[0],
+            Aluno::insert([
+                'n_processo' => intval($row[0]),
                 'nome_completo' => $row[1],
-                'data_nasc' => $row[2],
+                'data_nasc' => date('Y-m-d', strtotime($row[2])),
                 'email' => $row[3],
                 'imagem_aluno' => '102073766ab8aa636e49ae5401b39518.png',
-                'curso' => $curso,
-                'turma' => $turma,
-                'palavra-passe' => Hash::make("aluno2022"),
+                'curso' => $this->curso,
+                'turma' => $this->turma,
+                'palavra_passe' => Hash::make("aluno2022"),
                 'genero' => $row[4],
                 'user_id' => $user_anterior->id+1,
             ]);
+
+            $user_anterior->id++;
+
         }
     }
 }

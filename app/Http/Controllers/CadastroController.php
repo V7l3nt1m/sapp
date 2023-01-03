@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
+use App\Imports\ProfessorImport;
+
 
 
 class CadastroController extends Controller
@@ -154,84 +156,14 @@ class CadastroController extends Controller
     }
 
     public function store_alunos2(Request $request){
-        $turma = $request->turma;
-        $curso = $request->curso;
 
-        Excel::import(new UsersImport($turma, $curso), $request->file('arquivo'));
-        return back()->with('msg', 'Cadastro feito com sucesso!');
-    }
-
-    public function store_orientador(Request $request)
-    {
-        $user = Auth()->user();
-        $aluno = Aluno::where('user_id', $user->id)->first();
-        $query1 = DB::table('users')->orderBy('id', 'desc')->limit(1)->get();
-
-        $query2 = DB::table('users')->orderBy('id', 'desc')->limit(1)->first();
-
-        $query3 = DB::table('orientadores')->orderBy('id', 'desc')->limit(1)->get();
-
-        $query4 = DB::table('orientadores')->orderBy('id', 'desc')->limit(1)->first();
-
-
-        $request->validate(
-            [
-                'primeiro_nome' => 'min:2|string:255',
-                'ultimo_nome' => 'min:2|string:255',
-                'nome_completo' => 'min:2|string: 255',
-                'nome_de_usuario' => 'min:2|string|unique:users',
-                'email' => 'email|unique:professores|unique:users',
-                'image' => 'required|mimes:jpg,bmp,png,svg',
-                'telefone' => 'integer|between: 900000000, 999999999',
-                'cadeira' => 'min:2|string: 255',
-            ]
-
-        );
-
-        $user = new User;
-
-        $user->name = $request->primeiro_nome ." ". $request->ultimo_nome;
-        $user->email = $request->email;
-        $user->password = Hash::make("orientador2022");
-        $user->nomeusuario = $request->nome_user;
-        $user->permissao = "orientador";
-
-        $orientador = new Orientadore;
-        $orientador->primeiro_nome = $request->primeiro_nome;
-        $orientador->ultimo_nome = $request->ultimo_nome;
-        $orientador->nome_completo = $request->nome_completo;
-        $orientador->email = $request->email;
-        $orientador->telefone = $request->telefone;
-        $orientador->cadeira = $request->cadeira;
-        $orientador->palavra_passe = Hash::make("orientador2022");
-
-        $requestImage = $request->image;
-
-        $extension = $requestImage->extension();
-
-        $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-        $requestImage->move(public_path('img/orientadores'), $imageName);
-
-        $orientador->imagem_orientador = $imageName;
-
-        if (count($query1) == 1) {
-            $user->id = $query2->id + 1;
-            $orientador->user_id = $user->id;
-
-            $user->save();
-            $orientador->save();
-
-            if (count($query3) == 1) {
-                DB::table('alunos')->where('user_id', Auth()->user()->id)->update(['orientadore_id' => $query4->id + 1]);
-            }else{
-                DB::table('alunos')->where('user_id', Auth()->user()->id)->update(['orientadore_id' => 1]);
-            }
-
-
-            return redirect('/aluno')->with('msg', 'Cadastro feito com Sucesso!');
+        try {
+            Excel::import(new UsersImport($request->turma, $request->curso), $request->file('arquivo'));
+        } catch (\Throwable $th) {
+            return back()->with('erro', 'Ocorreu um erro, verifique os dados!');
         }
-        return redirect('/aluno')->with('msg', 'Cadastro feito com Sucesso!');
+        return back()->with('msg', 'Cadastro feito com sucesso!');
+
     }
 
 
@@ -305,32 +237,6 @@ class CadastroController extends Controller
             return back()->with('msg', "Cadastro feito com sucesso!");
         }
 
-
-    public function store_sala(Request $request){
-        $user = Auth()->user();
-        $professor = Professore::where('user_id', $user->id)->first();
-
-        $request->validate(
-            [
-                'turma' => 'required|min:1|max:4',
-                'curso' => 'required',
-                'id_sala' => 'required|unique:salas|min:5',
-                'senha' => 'required|min:10'
-            ]
-
-        );
-        $sala = new Sala;
-        $sala->curso = $request->curso;
-        $sala->turma = $request->turma;
-        $sala->professore_id = $professor->id;
-        $sala->id_sala = $request->id_sala;
-        $sala->senha = $request->senha;
-        $sala->save();
-
-        return redirect('/professor/sala/criar')->with('msg', 'Sala Criada');
-
-    }
-
     public function update_definicoes(Request $request)
     {
 
@@ -361,6 +267,16 @@ class CadastroController extends Controller
                 return back()->with('erro', 'As senhas não coicidem!');
 
             }
+
+    }
+
+    public function store_professor2(Request $request){
+        try {
+            Excel::import(new ProfessorImport, $request->file('arquivo'));
+        } catch (\Throwable $th) {
+            return back()->with('erro', 'Ocorreu um erro, verifique os dados!');
+        }
+        return back()->with('msg', 'Cadastro feito com sucesso!');
 
     }
 
@@ -406,18 +322,4 @@ class CadastroController extends Controller
 
     }
 
-    public function login_sala(Request $request){
-        $sala = Sala::where('id_sala', $request->id_sala)->where('senha', $request->senha)->first();
-        $query = Sala::where('id_sala', $request->id_sala)->where('senha', $request->senha)->get();
-
-        if(count($query) == 0){
-            return back()->with('erro', 'A Sala não foi encontrada!');
-        }else{
-            DB::table('alunos')->where('user_id', auth()->user()->id)->update(['sala_id' => $sala->id]);
-            return redirect('/aluno');
-        }
-    }
-
-
-   
 }
